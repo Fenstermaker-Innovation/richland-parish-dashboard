@@ -1,4 +1,4 @@
-import { COMMUNITY_VOICE_SURVEY_URL } from "../config/surveys.js"
+import CommunityVoiceForm from "./CommunityVoiceForm.jsx"
 
 export default function CommunityVoiceSection() {
   return (
@@ -14,30 +14,7 @@ export default function CommunityVoiceSection() {
             There are no wrong answers — only your perspective matters here.
           </p>
         </div>
-
-        {/* Survey embed */}
-        {COMMUNITY_VOICE_SURVEY_URL ? (
-          <div className="w-full rounded-none overflow-hidden shadow-sm border border-eucalyptus/30">
-            <iframe
-              src={COMMUNITY_VOICE_SURVEY_URL}
-              title="Community Voice Survey"
-              width="100%"
-              height="700"
-              frameBorder="0"
-              marginHeight="0"
-              marginWidth="0"
-              allow="geolocation"
-            />
-          </div>
-        ) : (
-          <div className="border-2 border-dashed border-eucalyptus/50 rounded-none p-16 text-center bg-ivory/60">
-            <p className="font-serif text-forest/40 text-xl mb-2">Survey Coming Soon</p>
-            <p className="font-sans text-forest/30 text-sm">
-              Paste your Survey123 share URL into{" "}
-              <code className="bg-sand px-1 py-0.5 text-xs">src/config/surveys.js</code>
-            </p>
-          </div>
-        )}
+        <CommunityVoiceForm />
       </div>
     </section>
   )
