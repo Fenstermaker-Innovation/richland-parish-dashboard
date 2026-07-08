@@ -73,7 +73,7 @@ function ArrowButton({ direction, onClick }) {
 function EventSlide({ event, active }) {
   const { month, day, full } = formatDate(event.date)
   const badge = TYPE_COLORS[event.type] ?? "bg-ivory/20 text-ivory border-ivory/30"
-  const hasImage = event.image && event.image.startsWith("http")
+  const hasImage = event.image && (event.image.startsWith("http") || event.image.startsWith("/"))
 
   return (
     <div
