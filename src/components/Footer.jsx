@@ -7,7 +7,8 @@ export default function Footer() {
           <span className="font-serif text-sage text-xs" style={{ letterSpacing: "0.35em" }}>
             PARISH
           </span>
-          <p className="font-sans text-xs mt-3 text-ivory/30">Community Master Plan &amp; Zoning Code</p>
+          <p className="font-sans text-xs mt-1 text-eucalyptus italic">Rooted in Richland</p>
+          <p className="font-sans text-xs mt-2 text-ivory/30">Community Master Plan &amp; Zoning Code</p>
         </div>
 
         <nav className="flex gap-8">

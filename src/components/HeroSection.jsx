@@ -5,7 +5,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex flex-col lg:flex-row">
       {/* Left panel — text */}
       <div className="relative z-10 flex flex-col justify-center px-10 py-32 lg:py-0 lg:w-5/12 lg:px-16 xl:px-24 bg-ivory">
-        <p className="section-label mb-6">Community Engagement</p>
+        <p className="section-label mb-6">Rooted in Richland</p>
 
         <h1 className="font-serif text-forest leading-tight mb-4" style={{ fontSize: "clamp(2.5rem, 5vw, 3.75rem)" }}>
           Shape the Future of
@@ -13,8 +13,8 @@ export default function HeroSection() {
         </h1>
 
         <p className="font-sans text-forest/60 text-base leading-relaxed mb-10 max-w-md">
-          We're crafting a Master Plan and Zoning Code for Richland Parish — and your voice matters most.
-          Share what this community means to you and help define our path forward.
+          This land has always defined us. Now we're writing the plan that defines its future —
+          and the most important voice in that process is yours.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">

@@ -4,6 +4,7 @@ const NAV_LINKS = [
   { label: "Community Voice", href: "#community-voice" },
   { label: "Learn", href: "#learn" },
   { label: "Stay Engaged", href: "#stay-engaged" },
+  { label: "Events", href: "#events" },
   { label: "Live Responses", href: "#live-responses" }
 ]
 
@@ -32,6 +33,10 @@ export default function Header() {
             style={{ letterSpacing: "0.35em" }}
           >
             PARISH
+          </span>
+          <span className="font-sans text-forest/35 text-[10px] tracking-widest uppercase mt-0.5"
+            style={{ letterSpacing: "0.2em" }}>
+            Rooted in Richland
           </span>
         </a>
 
