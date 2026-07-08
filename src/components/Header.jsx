@@ -21,15 +21,17 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-ivory/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        scrolled ? "bg-bark/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo text */}
         <a href="#" className="flex flex-col leading-none">
-          <span className="font-serif font-bold text-forest text-lg tracking-wider">RICHLAND</span>
+          <span className={`font-serif font-bold text-lg tracking-wider transition-colors duration-300 ${scrolled ? "text-ivory" : "text-forest"}`}>
+            RICHLAND
+          </span>
           <span
-            className="font-serif text-sage text-xs tracking-widest"
+            className={`font-serif text-xs transition-colors duration-300 ${scrolled ? "text-eucalyptus" : "text-sage"}`}
             style={{ letterSpacing: "0.35em" }}
           >
             PARISH
@@ -42,7 +44,9 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-sans text-sm text-forest/70 hover:text-forest tracking-wide transition-colors duration-150"
+              className={`font-sans text-sm tracking-wide transition-colors duration-150 ${
+                scrolled ? "text-ivory/70 hover:text-ivory" : "text-forest/70 hover:text-forest"
+              }`}
             >
               {link.label}
             </a>
@@ -58,20 +62,20 @@ export default function Header() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-px bg-forest transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-px bg-forest transition-all ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-px bg-forest transition-all ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-6 h-px transition-all ${scrolled ? "bg-ivory" : "bg-forest"} ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-px transition-all ${scrolled ? "bg-ivory" : "bg-forest"} ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-px transition-all ${scrolled ? "bg-ivory" : "bg-forest"} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-ivory border-t border-sand px-6 py-4 flex flex-col gap-4">
+        <div className={`md:hidden border-t px-6 py-4 flex flex-col gap-4 ${scrolled ? "bg-bark border-eucalyptus/20" : "bg-ivory border-sand"}`}>
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-sans text-sm text-forest/70 hover:text-forest tracking-wide"
+              className={`font-sans text-sm tracking-wide ${scrolled ? "text-ivory/70 hover:text-ivory" : "text-forest/70 hover:text-forest"}`}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

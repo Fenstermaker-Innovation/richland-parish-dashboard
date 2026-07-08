@@ -10,7 +10,7 @@ import WebTileLayer from "@arcgis/core/layers/WebTileLayer.js"
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer.js"
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol.js"
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js"
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js"
+import PictureMarkerSymbol from "@arcgis/core/symbols/PictureMarkerSymbol.js"
 import TextSymbol from "@arcgis/core/symbols/TextSymbol.js"
 import Zoom from "@arcgis/core/widgets/Zoom.js"
 import { PARISH_BOUNDARY_URL } from "../config/esri.js"
@@ -41,11 +41,16 @@ const LANDMARKS = [
   { name: "Boeuf River Landing",        lon: -91.8050, lat: 32.3850 },
 ]
 
-const MARKER = new SimpleMarkerSymbol({
-  style: "circle",
-  color: [107, 127, 91, 1],
-  size: 10,
-  outline: { color: [255, 248, 240, 1], width: 1.5 }
+// Shield + star SVG — classic historic landmark marker shape
+const SHIELD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 32" width="26" height="32">
+  <path d="M2,2 h22 v20 l-11,8 l-11,-8 Z" fill="#7A5C2E" stroke="#F7F5F0" stroke-width="1.8"/>
+  <polygon points="13,7 14.5,12 19.5,12 15.5,15 17,20 13,17 9,20 10.5,15 6.5,12 11.5,12" fill="#F7F5F0"/>
+</svg>`
+
+const MARKER = new PictureMarkerSymbol({
+  url: `data:image/svg+xml;base64,${btoa(SHIELD_SVG)}`,
+  width: 26,
+  height: 32
 })
 
 function makeLandmarkGraphics(landmark) {
@@ -59,7 +64,7 @@ function makeLandmarkGraphics(landmark) {
         color: [43, 51, 45, 1],
         haloColor: [255, 248, 240, 0.9],
         haloSize: 2,
-        yoffset: -20,
+        yoffset: -26,
         font: { size: 10, family: "sans-serif", weight: "bold" }
       })
     })
