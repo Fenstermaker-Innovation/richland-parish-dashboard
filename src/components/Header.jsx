@@ -34,10 +34,6 @@ export default function Header() {
           >
             PARISH
           </span>
-          <span className="font-sans text-forest/35 text-[10px] tracking-widest uppercase mt-0.5"
-            style={{ letterSpacing: "0.2em" }}>
-            Rooted in Richland
-          </span>
         </a>
 
         {/* Desktop nav */}

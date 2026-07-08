@@ -142,7 +142,7 @@ function EventCard({ event }) {
     : (TYPE_IMAGES[event.type] ?? `${BASE}images/Kickoff.png`)
 
   return (
-    <div className="bg-ivory flex flex-col overflow-hidden flex-1 min-w-0">
+    <div className="bg-ivory flex flex-col overflow-hidden flex-1 min-w-0" style={{ minWidth: 0 }}>
       <div className="relative h-64 flex-shrink-0">
         <img src={imgSrc} alt={event.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
@@ -154,8 +154,8 @@ function EventCard({ event }) {
           <span className={`font-sans text-[10px] px-2 py-0.5 border mb-1 ${badge}`}>{event.type}</span>
         </div>
       </div>
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="font-serif text-forest text-xl font-semibold mb-2 leading-snug line-clamp-2">
+      <div className="p-6 flex flex-col" style={{ minHeight: "220px" }}>
+        <h3 className="font-serif text-forest text-xl font-semibold mb-2 leading-snug line-clamp-1">
           {event.title}
         </h3>
         <p className="font-sans text-forest/55 text-xs leading-relaxed mb-5 line-clamp-4 flex-1">
@@ -266,7 +266,7 @@ export default function EventsSection() {
             </div>
 
             {/* Event cards — slides 1 at a time */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-stretch">
               {visibleEvents.map((event, i) => (
                 <EventCard key={startIdx + i} event={event} />
               ))}

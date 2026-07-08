@@ -6,10 +6,11 @@ import StayEngagedSection from "./components/StayEngagedSection.jsx"
 import EventsSection from "./components/EventsSection.jsx"
 import LiveResponsesSection from "./components/LiveResponsesSection.jsx"
 import Footer from "./components/Footer.jsx"
+import BottomBar from "./components/BottomBar.jsx"
 
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-14">
       <Header />
       <main>
         <HeroSection />
@@ -20,6 +21,7 @@ export default function App() {
         <LiveResponsesSection />
       </main>
       <Footer />
+      <BottomBar />
     </div>
   )
 }
