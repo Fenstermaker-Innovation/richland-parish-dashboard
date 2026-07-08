@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-bark text-ivory/50 py-12 px-6">
+    <footer className="text-ivory/50 py-12 px-6" style={{ backgroundColor: "#1A2219" }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start">
           <span className="font-serif font-bold text-ivory text-base tracking-wider">RICHLAND</span>
