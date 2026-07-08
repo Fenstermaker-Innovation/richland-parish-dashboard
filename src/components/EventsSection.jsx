@@ -64,7 +64,7 @@ function formatDate(dateStr) {
   }
 }
 
-function MiniCalendar({ year, month, eventDays }) {
+function MiniCalendar({ year, month, eventDays, onDayClick }) {
   const firstDow = new Date(year, month, 1).getDay()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const label = new Date(year, month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" })
@@ -90,18 +90,23 @@ function MiniCalendar({ year, month, eventDays }) {
         {cells.map((day, i) => {
           const hasEvent = day && eventDays.includes(day)
           const isToday = isThisMonth && day === todayDay
+          const baseClass = "font-sans text-xs w-8 h-8 flex items-center justify-center rounded-full transition-colors"
           return (
             <div key={i} className="flex items-center justify-center py-0.5">
               {day ? (
-                <span className={`font-sans text-xs w-8 h-8 flex items-center justify-center rounded-full transition-colors ${
-                  hasEvent
-                    ? "bg-sage text-forest font-semibold"
-                    : isToday
-                    ? "border border-eucalyptus/50 text-ivory"
-                    : "text-ivory/35"
-                }`}>
-                  {day}
-                </span>
+                hasEvent ? (
+                  <button
+                    onClick={() => onDayClick(year, month, day)}
+                    aria-label={`View event on ${label} ${day}`}
+                    className={`${baseClass} bg-sage text-forest font-semibold hover:bg-eucalyptus hover:text-ivory cursor-pointer`}
+                  >
+                    {day}
+                  </button>
+                ) : (
+                  <span className={`${baseClass} ${isToday ? "border border-eucalyptus/50 text-ivory" : "text-ivory/35"}`}>
+                    {day}
+                  </span>
+                )
               ) : null}
             </div>
           )
@@ -209,6 +214,15 @@ export default function EventsSection() {
   const canPrev = startIdx > 0
   const canNext = startIdx < maxIdx
 
+  const handleCalendarDayClick = (year, month, day) => {
+    const iso = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+    const idx = events.findIndex(e => toISODate(e.date) === iso)
+    if (idx !== -1) {
+      // Place clicked event in the center slot (position 1 of 3)
+      setStartIdx(Math.min(Math.max(idx - 1, 0), maxIdx))
+    }
+  }
+
   // Calendar data for this month and next
   const now = new Date()
   const cal = [0, 1].map(offset => {
@@ -260,7 +274,11 @@ export default function EventsSection() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {cal.map(({ year, month, days }) => (
-                  <MiniCalendar key={`${year}-${month}`} year={year} month={month} eventDays={days} />
+                  <MiniCalendar
+                    key={`${year}-${month}`}
+                    year={year} month={month} eventDays={days}
+                    onDayClick={handleCalendarDayClick}
+                  />
                 ))}
               </div>
             </div>
