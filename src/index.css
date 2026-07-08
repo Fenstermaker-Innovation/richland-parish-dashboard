@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@arcgis/core/assets/esri/themes/light/main.css";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-forest;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-sans font-semibold tracking-widest uppercase text-eucalyptus mb-3;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-sage text-ivory font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-forest transition-colors duration-200;
+  }
+
+  .btn-outline {
+    @apply inline-block border border-sage text-sage font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-sage hover:text-ivory transition-colors duration-200;
+  }
+
+  .esri-widget {
+    font-family: 'Inter', system-ui, sans-serif !important;
+  }
+}
+
+/* Override ESRI widget colors to match brand */
+.esri-ui .esri-component {
+  background-color: rgba(247, 245, 240, 0.95) !important;
+}
+
+.esri-zoom .esri-widget--button {
+  background-color: #F7F5F0 !important;
+  color: #2B332D !important;
+  border-color: #E8E2D6 !important;
+}
+
+.esri-zoom .esri-widget--button:hover {
+  background-color: #E8E2D6 !important;
+}
