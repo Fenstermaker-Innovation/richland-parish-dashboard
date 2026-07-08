@@ -8,7 +8,7 @@ export default {
         sand: '#E8E2D6',
         ivory: '#F7F5F0',
         forest: '#2B332D',
-        bark:   '#3B4A3D'
+        bark:   '#1A2219'
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
