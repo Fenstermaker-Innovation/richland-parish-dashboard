@@ -14,6 +14,21 @@ const TYPE_COLORS = {
   "Presentation":   "bg-ivory/20 text-ivory border-ivory/30",
 }
 
+// Images auto-assigned by event type using Vite's base URL (works in dev + GitHub Pages subdirectory)
+const BASE = import.meta.env.BASE_URL
+const TYPE_IMAGES = {
+  "Public Meeting": `${BASE}images/Kickoff.png`,
+  "Meeting":        `${BASE}images/Kickoff.png`,
+  "Workshop":       `${BASE}images/StoryMap.png`,
+  "Data Review":    `${BASE}images/GIS.png`,
+  "Review":         `${BASE}images/GIS.png`,
+  "Open House":     `${BASE}images/FinalDeliverables.png`,
+  "Presentation":   `${BASE}images/FinalDeliverables.png`,
+  "Forum":          `${BASE}images/Field.png`,
+  "Roundtable":     `${BASE}images/Field.png`,
+  "Field Work":     `${BASE}images/Field.png`,
+}
+
 function parseCSV(text) {
   const lines = text.trim().split("\n")
   const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""))
@@ -76,17 +91,15 @@ function ArrowButton({ direction, onClick, disabled }) {
 function EventCard({ event }) {
   const { month, day, full } = formatDate(event.date)
   const badge = TYPE_COLORS[event.type] ?? "bg-ivory/20 text-ivory border-ivory/30"
-  const hasImage = event.image && event.image.startsWith("http")
+  // Use CSV image if it's a valid https URL, otherwise fall back to type-based local image
+  const imgSrc = (event.image && event.image.startsWith("http"))
+    ? event.image
+    : (TYPE_IMAGES[event.type] ?? `${BASE}images/Kickoff.png`)
 
   return (
     <div className="bg-ivory flex flex-col overflow-hidden flex-1 min-w-0">
-      {/* Image */}
       <div className="relative h-52 flex-shrink-0">
-        {hasImage ? (
-          <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-forest via-sage/60 to-eucalyptus/40" />
-        )}
+        <img src={imgSrc} alt={event.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
         <div className="absolute bottom-3 left-4 flex items-end gap-3">
           <div className="flex flex-col items-center leading-none">
@@ -96,8 +109,6 @@ function EventCard({ event }) {
           <span className={`font-sans text-[10px] px-2 py-0.5 border mb-0.5 ${badge}`}>{event.type}</span>
         </div>
       </div>
-
-      {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-serif text-forest text-lg font-semibold mb-2 leading-snug line-clamp-2">
           {event.title}
@@ -120,6 +131,53 @@ function EventCard({ event }) {
             {event.location}
           </span>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function MiniCalendar({ year, month, eventDays }) {
+  const firstDow = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const label = new Date(year, month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+
+  const now = new Date()
+  const isThisMonth = now.getFullYear() === year && now.getMonth() === month
+  const todayDay = now.getDate()
+
+  const cells = [
+    ...Array(firstDow).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ]
+
+  return (
+    <div className="border border-eucalyptus/20 p-5">
+      <p className="font-sans text-xs font-semibold text-ivory/70 tracking-widest uppercase text-center mb-4">
+        {label}
+      </p>
+      <div className="grid grid-cols-7 gap-y-1 text-center">
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map(d => (
+          <span key={d} className="font-sans text-[10px] text-eucalyptus/60 pb-1">{d}</span>
+        ))}
+        {cells.map((day, i) => {
+          const hasEvent = day && eventDays.includes(day)
+          const isToday = isThisMonth && day === todayDay
+          return (
+            <div key={i} className="flex items-center justify-center">
+              {day ? (
+                <span className={`font-sans text-[11px] w-6 h-6 flex items-center justify-center rounded-full ${
+                  hasEvent
+                    ? "bg-sage text-forest font-semibold"
+                    : isToday
+                    ? "border border-eucalyptus/50 text-ivory"
+                    : "text-ivory/35"
+                }`}>
+                  {day}
+                </span>
+              ) : null}
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -150,6 +208,19 @@ export default function EventsSection() {
 
   const totalPages = Math.ceil(events.length / PER_PAGE)
   const visibleEvents = events.slice(page * PER_PAGE, (page + 1) * PER_PAGE)
+
+  // Calendar months
+  const now = new Date()
+  const cal = [0, 1].map(offset => {
+    const d = new Date(now.getFullYear(), now.getMonth() + offset, 1)
+    const yr = d.getFullYear()
+    const mo = d.getMonth()
+    const days = events
+      .map(e => new Date(toISODate(e.date) + "T00:00:00"))
+      .filter(d2 => d2.getFullYear() === yr && d2.getMonth() === mo)
+      .map(d2 => d2.getDate())
+    return { year: yr, month: mo, days }
+  })
 
   return (
     <section id="events" className="bg-forest py-24 px-6">
@@ -182,25 +253,24 @@ export default function EventsSection() {
 
         {!loading && events.length > 0 && (
           <>
-            {/* Cards */}
+            {/* Event cards */}
             <div className="flex flex-col sm:flex-row gap-4">
               {visibleEvents.map((event, i) => (
                 <EventCard key={page * PER_PAGE + i} event={event} />
               ))}
-              {/* Empty spacers so last row aligns when < 3 events */}
-              {visibleEvents.length < PER_PAGE && Array.from({ length: PER_PAGE - visibleEvents.length }).map((_, i) => (
-                <div key={`spacer-${i}`} className="flex-1 min-w-0 hidden sm:block" />
-              ))}
+              {visibleEvents.length < PER_PAGE &&
+                Array.from({ length: PER_PAGE - visibleEvents.length }).map((_, i) => (
+                  <div key={`spacer-${i}`} className="flex-1 min-w-0 hidden sm:block" />
+                ))}
             </div>
 
-            {/* Navigation */}
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className="flex items-center justify-between mt-6">
                 <div className="flex gap-2">
                   <ArrowButton direction="prev" onClick={() => setPage(p => p - 1)} disabled={page === 0} />
                   <ArrowButton direction="next" onClick={() => setPage(p => p + 1)} disabled={page === totalPages - 1} />
                 </div>
-
                 <div className="flex items-center gap-2">
                   {Array.from({ length: totalPages }).map((_, i) => (
                     <button
@@ -208,19 +278,28 @@ export default function EventsSection() {
                       onClick={() => setPage(i)}
                       aria-label={`Go to page ${i + 1}`}
                       className={`transition-all duration-300 rounded-full ${
-                        i === page
-                          ? "w-4 h-1.5 bg-sage"
-                          : "w-1.5 h-1.5 bg-eucalyptus/30 hover:bg-eucalyptus/60"
+                        i === page ? "w-4 h-1.5 bg-sage" : "w-1.5 h-1.5 bg-eucalyptus/30 hover:bg-eucalyptus/60"
                       }`}
                     />
                   ))}
                 </div>
-
                 <span className="font-sans text-xs text-ivory/30 tracking-widest">
                   {String(page + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}
                 </span>
               </div>
             )}
+
+            {/* Mini calendars */}
+            <div className="mt-14 border-t border-eucalyptus/15 pt-12">
+              <p className="font-sans text-xs text-ivory/30 tracking-widest uppercase text-center mb-8">
+                At a Glance
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                {cal.map(({ year, month, days }) => (
+                  <MiniCalendar key={`${year}-${month}`} year={year} month={month} eventDays={days} />
+                ))}
+              </div>
+            </div>
 
             <p className="font-sans text-ivory/25 text-xs text-center mt-10">
               Sign up above to receive event reminders directly in your inbox.
