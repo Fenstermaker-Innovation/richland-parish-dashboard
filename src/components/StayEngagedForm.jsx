@@ -50,8 +50,8 @@ function RadioPills({ options, value, onChange }) {
           onClick={() => onChange(opt.value)}
           className={`px-4 py-2 text-sm font-sans border transition-colors duration-150 ${
             value === opt.value
-              ? "bg-forest border-forest text-ivory"
-              : "border-eucalyptus/60 text-forest hover:border-forest"
+              ? "bg-sage border-sage text-ivory"
+              : "border-ivory/30 text-ivory hover:border-eucalyptus"
           }`}
         >
           {opt.label}
@@ -77,7 +77,7 @@ function CheckPills({ options, selected, onChange }) {
             className={`px-4 py-2 text-sm font-sans border transition-colors duration-150 ${
               on
                 ? "bg-sage border-sage text-ivory"
-                : "border-eucalyptus/60 text-forest hover:border-sage"
+                : "border-ivory/30 text-ivory hover:border-eucalyptus"
             }`}
           >
             {opt.label}
@@ -91,16 +91,16 @@ function CheckPills({ options, selected, onChange }) {
 function InputField({ label, hint, required, children }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="font-sans text-sm font-medium text-forest tracking-wide">
-        {label}{required && <span className="text-sage ml-1">*</span>}
+      <label className="font-sans text-sm font-medium text-ivory tracking-wide">
+        {label}{required && <span className="text-eucalyptus ml-1">*</span>}
       </label>
-      {hint && <p className="font-sans text-forest/40 text-xs">{hint}</p>}
+      {hint && <p className="font-sans text-ivory/55 text-xs">{hint}</p>}
       {children}
     </div>
   )
 }
 
-const inputCls = "w-full border border-sand bg-white focus:border-sage focus:outline-none px-4 py-3 font-sans text-sm text-forest transition-colors placeholder:text-forest/25"
+const inputCls = "w-full border border-ivory/20 bg-ivory/10 focus:border-eucalyptus focus:outline-none px-4 py-3 font-sans text-sm text-ivory transition-colors placeholder:text-ivory/30"
 
 export default function StayEngagedForm() {
   const [submitting, setSubmitting] = useState(false)

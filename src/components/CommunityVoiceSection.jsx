@@ -13,8 +13,13 @@ export default function CommunityVoiceSection() {
             Your answer will directly shape the identity and direction of this project.
             There are no wrong answers — only your perspective matters here.
           </p>
+          <p className="font-sans text-forest/40 text-xs mt-4 tracking-wide">
+            Please submit one response per person.
+          </p>
         </div>
-        <CommunityVoiceForm />
+        <div className="bg-ivory border border-eucalyptus/30 p-8 md:p-12">
+          <CommunityVoiceForm />
+        </div>
       </div>
     </section>
   )
