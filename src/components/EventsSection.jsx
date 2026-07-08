@@ -14,7 +14,6 @@ const TYPE_COLORS = {
   "Presentation":   "bg-ivory/20 text-ivory border-ivory/30",
 }
 
-// Images auto-assigned by event type using Vite's base URL (works in dev + GitHub Pages subdirectory)
 const BASE = import.meta.env.BASE_URL
 const TYPE_IMAGES = {
   "Public Meeting": `${BASE}images/Kickoff.png`,
@@ -65,12 +64,59 @@ function formatDate(dateStr) {
   }
 }
 
+function MiniCalendar({ year, month, eventDays }) {
+  const firstDow = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const label = new Date(year, month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+
+  const now = new Date()
+  const isThisMonth = now.getFullYear() === year && now.getMonth() === month
+  const todayDay = now.getDate()
+
+  const cells = [
+    ...Array(firstDow).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ]
+
+  return (
+    <div className="border border-eucalyptus/20 p-6 lg:p-8">
+      <p className="font-sans text-sm font-semibold text-ivory/70 tracking-widest uppercase text-center mb-5">
+        {label}
+      </p>
+      <div className="grid grid-cols-7 gap-y-1.5 text-center">
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map(d => (
+          <span key={d} className="font-sans text-xs text-eucalyptus/60 pb-2">{d}</span>
+        ))}
+        {cells.map((day, i) => {
+          const hasEvent = day && eventDays.includes(day)
+          const isToday = isThisMonth && day === todayDay
+          return (
+            <div key={i} className="flex items-center justify-center py-0.5">
+              {day ? (
+                <span className={`font-sans text-xs w-8 h-8 flex items-center justify-center rounded-full transition-colors ${
+                  hasEvent
+                    ? "bg-sage text-forest font-semibold"
+                    : isToday
+                    ? "border border-eucalyptus/50 text-ivory"
+                    : "text-ivory/35"
+                }`}>
+                  {day}
+                </span>
+              ) : null}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function ArrowButton({ direction, onClick, disabled }) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      aria-label={direction === "prev" ? "Previous events" : "Next events"}
+      aria-label={direction === "prev" ? "Previous event" : "Next event"}
       className={`w-11 h-11 flex items-center justify-center border border-eucalyptus/40 backdrop-blur-sm transition-colors duration-150 flex-shrink-0 ${
         disabled ? "bg-ivory/5 text-ivory/20 cursor-not-allowed" : "bg-ivory/10 hover:bg-ivory/20 text-ivory"
       }`}
@@ -91,29 +137,28 @@ function ArrowButton({ direction, onClick, disabled }) {
 function EventCard({ event }) {
   const { month, day, full } = formatDate(event.date)
   const badge = TYPE_COLORS[event.type] ?? "bg-ivory/20 text-ivory border-ivory/30"
-  // Use CSV image if it's a valid https URL, otherwise fall back to type-based local image
   const imgSrc = (event.image && event.image.startsWith("http"))
     ? event.image
     : (TYPE_IMAGES[event.type] ?? `${BASE}images/Kickoff.png`)
 
   return (
     <div className="bg-ivory flex flex-col overflow-hidden flex-1 min-w-0">
-      <div className="relative h-52 flex-shrink-0">
+      <div className="relative h-64 flex-shrink-0">
         <img src={imgSrc} alt={event.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
-        <div className="absolute bottom-3 left-4 flex items-end gap-3">
+        <div className="absolute bottom-4 left-5 flex items-end gap-3">
           <div className="flex flex-col items-center leading-none">
             <span className="font-sans text-[10px] font-bold text-eucalyptus tracking-widest">{month}</span>
-            <span className="font-serif text-4xl font-semibold text-ivory leading-none">{day}</span>
+            <span className="font-serif text-5xl font-semibold text-ivory leading-none">{day}</span>
           </div>
-          <span className={`font-sans text-[10px] px-2 py-0.5 border mb-0.5 ${badge}`}>{event.type}</span>
+          <span className={`font-sans text-[10px] px-2 py-0.5 border mb-1 ${badge}`}>{event.type}</span>
         </div>
       </div>
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-serif text-forest text-lg font-semibold mb-2 leading-snug line-clamp-2">
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="font-serif text-forest text-xl font-semibold mb-2 leading-snug line-clamp-2">
           {event.title}
         </h3>
-        <p className="font-sans text-forest/55 text-xs leading-relaxed mb-4 line-clamp-3 flex-1">
+        <p className="font-sans text-forest/55 text-xs leading-relaxed mb-5 line-clamp-4 flex-1">
           {event.description}
         </p>
         <div className="flex flex-col gap-1.5 pt-3 border-t border-sand/60">
@@ -136,59 +181,12 @@ function EventCard({ event }) {
   )
 }
 
-function MiniCalendar({ year, month, eventDays }) {
-  const firstDow = new Date(year, month, 1).getDay()
-  const daysInMonth = new Date(year, month + 1, 0).getDate()
-  const label = new Date(year, month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" })
-
-  const now = new Date()
-  const isThisMonth = now.getFullYear() === year && now.getMonth() === month
-  const todayDay = now.getDate()
-
-  const cells = [
-    ...Array(firstDow).fill(null),
-    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
-  ]
-
-  return (
-    <div className="border border-eucalyptus/20 p-5">
-      <p className="font-sans text-xs font-semibold text-ivory/70 tracking-widest uppercase text-center mb-4">
-        {label}
-      </p>
-      <div className="grid grid-cols-7 gap-y-1 text-center">
-        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map(d => (
-          <span key={d} className="font-sans text-[10px] text-eucalyptus/60 pb-1">{d}</span>
-        ))}
-        {cells.map((day, i) => {
-          const hasEvent = day && eventDays.includes(day)
-          const isToday = isThisMonth && day === todayDay
-          return (
-            <div key={i} className="flex items-center justify-center">
-              {day ? (
-                <span className={`font-sans text-[11px] w-6 h-6 flex items-center justify-center rounded-full ${
-                  hasEvent
-                    ? "bg-sage text-forest font-semibold"
-                    : isToday
-                    ? "border border-eucalyptus/50 text-ivory"
-                    : "text-ivory/35"
-                }`}>
-                  {day}
-                </span>
-              ) : null}
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
-const PER_PAGE = 3
+const VISIBLE = 3
 
 export default function EventsSection() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState(0)
+  const [startIdx, setStartIdx] = useState(0)
 
   useEffect(() => {
     const url = EVENTS_CSV_URL || "./events.csv"
@@ -206,10 +204,12 @@ export default function EventsSection() {
       .finally(() => setLoading(false))
   }, [])
 
-  const totalPages = Math.ceil(events.length / PER_PAGE)
-  const visibleEvents = events.slice(page * PER_PAGE, (page + 1) * PER_PAGE)
+  const maxIdx = Math.max(0, events.length - VISIBLE)
+  const visibleEvents = events.slice(startIdx, startIdx + VISIBLE)
+  const canPrev = startIdx > 0
+  const canNext = startIdx < maxIdx
 
-  // Calendar months
+  // Calendar data for this month and next
   const now = new Date()
   const cal = [0, 1].map(offset => {
     const d = new Date(now.getFullYear(), now.getMonth() + offset, 1)
@@ -253,53 +253,55 @@ export default function EventsSection() {
 
         {!loading && events.length > 0 && (
           <>
-            {/* Event cards */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              {visibleEvents.map((event, i) => (
-                <EventCard key={page * PER_PAGE + i} event={event} />
-              ))}
-              {visibleEvents.length < PER_PAGE &&
-                Array.from({ length: PER_PAGE - visibleEvents.length }).map((_, i) => (
-                  <div key={`spacer-${i}`} className="flex-1 min-w-0 hidden sm:block" />
-                ))}
-            </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-between mt-6">
-                <div className="flex gap-2">
-                  <ArrowButton direction="prev" onClick={() => setPage(p => p - 1)} disabled={page === 0} />
-                  <ArrowButton direction="next" onClick={() => setPage(p => p + 1)} disabled={page === totalPages - 1} />
-                </div>
-                <div className="flex items-center gap-2">
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setPage(i)}
-                      aria-label={`Go to page ${i + 1}`}
-                      className={`transition-all duration-300 rounded-full ${
-                        i === page ? "w-4 h-1.5 bg-sage" : "w-1.5 h-1.5 bg-eucalyptus/30 hover:bg-eucalyptus/60"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="font-sans text-xs text-ivory/30 tracking-widest">
-                  {String(page + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}
-                </span>
-              </div>
-            )}
-
-            {/* Mini calendars */}
-            <div className="mt-14 border-t border-eucalyptus/15 pt-12">
-              <p className="font-sans text-xs text-ivory/30 tracking-widest uppercase text-center mb-8">
+            {/* Calendars — above the carousel */}
+            <div className="mb-14">
+              <p className="font-sans text-xs text-ivory/30 tracking-widest uppercase text-center mb-6">
                 At a Glance
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {cal.map(({ year, month, days }) => (
                   <MiniCalendar key={`${year}-${month}`} year={year} month={month} eventDays={days} />
                 ))}
               </div>
             </div>
+
+            {/* Event cards — slides 1 at a time */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              {visibleEvents.map((event, i) => (
+                <EventCard key={startIdx + i} event={event} />
+              ))}
+              {visibleEvents.length < VISIBLE &&
+                Array.from({ length: VISIBLE - visibleEvents.length }).map((_, i) => (
+                  <div key={`spacer-${i}`} className="flex-1 min-w-0 hidden sm:block" />
+                ))}
+            </div>
+
+            {/* Navigation — only shown when there are more events than VISIBLE */}
+            {events.length > VISIBLE && (
+              <div className="flex items-center justify-between mt-6">
+                <div className="flex gap-2">
+                  <ArrowButton direction="prev" onClick={() => setStartIdx(i => i - 1)} disabled={!canPrev} />
+                  <ArrowButton direction="next" onClick={() => setStartIdx(i => i + 1)} disabled={!canNext} />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: maxIdx + 1 }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setStartIdx(i)}
+                      aria-label={`Go to position ${i + 1}`}
+                      className={`transition-all duration-300 rounded-full ${
+                        i === startIdx ? "w-4 h-1.5 bg-sage" : "w-1.5 h-1.5 bg-eucalyptus/30 hover:bg-eucalyptus/60"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <span className="font-sans text-xs text-ivory/30 tracking-widest">
+                  {String(startIdx + 1).padStart(2, "0")} / {String(maxIdx + 1).padStart(2, "0")}
+                </span>
+              </div>
+            )}
 
             <p className="font-sans text-ivory/25 text-xs text-center mt-10">
               Sign up above to receive event reminders directly in your inbox.
