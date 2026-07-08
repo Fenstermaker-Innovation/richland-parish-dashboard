@@ -5,7 +5,6 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js"
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js"
 import Graphic from "@arcgis/core/Graphic.js"
 import Point from "@arcgis/core/geometry/Point.js"
-import Polyline from "@arcgis/core/geometry/Polyline.js"
 import Basemap from "@arcgis/core/Basemap.js"
 import WebTileLayer from "@arcgis/core/layers/WebTileLayer.js"
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer.js"
@@ -16,17 +15,17 @@ import TextSymbol from "@arcgis/core/symbols/TextSymbol.js"
 import Zoom from "@arcgis/core/widgets/Zoom.js"
 import { PARISH_BOUNDARY_URL } from "../config/esri.js"
 
-// CartoDB Voyager — shows roads, terrain, and water bodies (rivers in blue) with no auth required
+// CartoDB Positron — clean light basemap with streets, no API key required
 const basemap = new Basemap({
   baseLayers: [
     new WebTileLayer({
-      urlTemplate: "https://{subDomain}.basemaps.cartocdn.com/rastertiles/voyager/{level}/{col}/{row}.png",
+      urlTemplate: "https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png",
       subDomains: ["a", "b", "c", "d"],
       copyright: "© OpenStreetMap contributors © CARTO"
     })
   ],
-  title: "Voyager",
-  id: "voyager"
+  title: "Light",
+  id: "light"
 })
 
 const FILL_SYMBOL = new SimpleFillSymbol({
@@ -48,31 +47,11 @@ const LANDMARKS = [
   { name: "Boeuf River Ferry Site",     lon: -91.8050, lat: 32.3850 },
 ]
 
-// Major waterways — simplified polyline paths through Richland Parish
-const RIVERS = [
-  {
-    name: "Boeuf River",
-    labelLon: -91.838, labelLat: 32.425,
-    // flows N→S through western Richland Parish
-    path: [
-      [-91.855, 32.570], [-91.848, 32.535], [-91.838, 32.498],
-      [-91.822, 32.462], [-91.810, 32.425], [-91.805, 32.388],
-      [-91.800, 32.350], [-91.795, 32.308], [-91.790, 32.270]
-    ]
-  },
-  {
-    name: "Bayou Macon",
-    labelLon: -91.510, labelLat: 32.415,
-    // flows N→S through eastern Richland Parish
-    path: [
-      [-91.548, 32.572], [-91.532, 32.535], [-91.518, 32.495],
-      [-91.505, 32.458], [-91.494, 32.418], [-91.483, 32.378],
-      [-91.472, 32.338], [-91.465, 32.285]
-    ]
-  }
+// Water body label points — placed at midpoints of each waterway in the parish
+const WATER_LABELS = [
+  { name: "Boeuf River",  lon: -91.822, lat: 32.425 },
+  { name: "Bayou Macon",  lon: -91.502, lat: 32.415 },
 ]
-
-const RIVER_LINE = new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 3 })
 
 // Shield + star SVG — classic historic landmark marker shape
 const SHIELD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 32" width="26" height="32">
@@ -104,26 +83,17 @@ function makeLandmarkGraphics(landmark) {
   ]
 }
 
-function makeRiverGraphics(river) {
-  return [
-    new Graphic({
-      geometry: new Polyline({
-        paths: [river.path],
-        spatialReference: { wkid: 4326 }
-      }),
-      symbol: RIVER_LINE
-    }),
-    new Graphic({
-      geometry: new Point({ longitude: river.labelLon, latitude: river.labelLat }),
-      symbol: new TextSymbol({
-        text: river.name,
-        color: [30, 90, 155, 1],
-        haloColor: [255, 255, 255, 0.92],
-        haloSize: 2.5,
-        font: { size: 11, family: "sans-serif", style: "italic", weight: "bold" }
-      })
+function makeWaterLabelGraphic(w) {
+  return new Graphic({
+    geometry: new Point({ longitude: w.lon, latitude: w.lat }),
+    symbol: new TextSymbol({
+      text: w.name,
+      color: [30, 90, 155, 1],
+      haloColor: [255, 255, 255, 0.92],
+      haloSize: 2.5,
+      font: { size: 11, family: "sans-serif", style: "italic", weight: "bold" }
     })
-  ]
+  })
 }
 
 export default function ParishMap({ className = "" }) {
@@ -137,7 +107,7 @@ export default function ParishMap({ className = "" }) {
 
     const landmarkLayer = new GraphicsLayer({
       graphics: [
-        ...RIVERS.flatMap(makeRiverGraphics),
+        ...WATER_LABELS.map(makeWaterLabelGraphic),
         ...LANDMARKS.flatMap(makeLandmarkGraphics),
       ]
     })
