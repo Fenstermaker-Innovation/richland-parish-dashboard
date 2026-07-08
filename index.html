@@ -8,6 +8,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      /* Suppress Google Translate top banner */
+      body { top: 0 !important; }
+      .skiptranslate { display: none !important; }
+      /* Style the inline widget to match the header */
+      .translate-widget .goog-te-gadget { color: transparent; font-size: 0; }
+      .translate-widget .goog-te-gadget select {
+        background: transparent;
+        border: 1px solid rgba(167,180,154,0.35);
+        color: rgba(247,245,240,0.6);
+        font-family: Inter, sans-serif;
+        font-size: 11px;
+        padding: 4px 6px;
+        cursor: pointer;
+        outline: none;
+      }
+      .translate-widget .goog-te-gadget select:hover { color: #F5F1E8; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

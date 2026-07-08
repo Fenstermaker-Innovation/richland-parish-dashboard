@@ -29,11 +29,11 @@ const basemap = new Basemap({
 })
 
 const FILL_SYMBOL = new SimpleFillSymbol({
-  color: [107, 127, 91, 0.22],
-  outline: new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 3.5 })
+  color: [53, 94, 59, 0.22],
+  outline: new SimpleLineSymbol({ color: [29, 53, 33, 1], width: 3.5 })
 })
 
-const LINE_SYMBOL = new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 3.5 })
+const LINE_SYMBOL = new SimpleLineSymbol({ color: [29, 53, 33, 1], width: 3.5 })
 
 // Historic landmarks in Richland Parish
 const LANDMARKS = [
@@ -55,8 +55,8 @@ const WATER_LABELS = [
 
 // Shield + star SVG — classic historic landmark marker shape
 const SHIELD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 32" width="26" height="32">
-  <path d="M2,2 h22 v20 l-11,8 l-11,-8 Z" fill="#7A5C2E" stroke="#F7F5F0" stroke-width="1.8"/>
-  <polygon points="13,7 14.5,12 19.5,12 15.5,15 17,20 13,17 9,20 10.5,15 6.5,12 11.5,12" fill="#F7F5F0"/>
+  <path d="M2,2 h22 v20 l-11,8 l-11,-8 Z" fill="#6B4F3A" stroke="#F5F1E8" stroke-width="1.8"/>
+  <polygon points="13,7 14.5,12 19.5,12 15.5,15 17,20 13,17 9,20 10.5,15 6.5,12 11.5,12" fill="#C89A3D"/>
 </svg>`
 
 const MARKER = new PictureMarkerSymbol({
@@ -73,8 +73,8 @@ function makeLandmarkGraphics(landmark) {
       geometry: point,
       symbol: new TextSymbol({
         text: landmark.name,
-        color: [43, 51, 45, 1],
-        haloColor: [255, 248, 240, 0.95],
+        color: [52, 52, 52, 1],
+        haloColor: [245, 241, 232, 0.95],
         haloSize: 2,
         yoffset: -26,
         font: { size: 9, family: "sans-serif", weight: "bold" }

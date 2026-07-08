@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="text-ivory/50 py-12 px-6" style={{ backgroundColor: "#1A2219" }}>
+    <footer className="text-ivory/50 py-12 px-6" style={{ backgroundColor: "#1D3521" }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
 
         {/* Branding */}
@@ -19,10 +19,18 @@ export default function Footer() {
         {/* Nav */}
         <nav className="flex flex-col items-center md:items-start gap-3">
           <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/30 mb-1">Sections</p>
-          {["Community Voice", "Learn", "Stay Engaged", "Events", "Live Responses"].map((label) => (
+          {[
+            { label: "About",           href: "#about" },
+            { label: "Timeline",        href: "#timeline" },
+            { label: "Community Voice", href: "#community-voice" },
+            { label: "Events",          href: "#events" },
+            { label: "Documents",       href: "#documents" },
+            { label: "Interactive Map", href: "#interactive-map" },
+            { label: "Live Responses",  href: "#live-responses" },
+          ].map(({ label, href }) => (
             <a
-              key={label}
-              href={`#${label.toLowerCase().replace(/ /g, "-")}`}
+              key={href}
+              href={href}
               className="font-sans text-xs tracking-wide hover:text-ivory/80 transition-colors"
             >
               {label}
