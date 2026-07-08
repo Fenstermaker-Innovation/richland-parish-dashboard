@@ -15,30 +15,42 @@ import TextSymbol from "@arcgis/core/symbols/TextSymbol.js"
 import Zoom from "@arcgis/core/widgets/Zoom.js"
 import { PARISH_BOUNDARY_URL } from "../config/esri.js"
 
-const lightBasemap = new Basemap({
+// CartoDB Voyager — shows roads, terrain, and water bodies (rivers in blue) with no auth required
+const basemap = new Basemap({
   baseLayers: [
     new WebTileLayer({
-      urlTemplate: "https://{subDomain}.basemaps.cartocdn.com/light_all/{level}/{col}/{row}.png",
+      urlTemplate: "https://{subDomain}.basemaps.cartocdn.com/rastertiles/voyager/{level}/{col}/{row}.png",
       subDomains: ["a", "b", "c", "d"],
       copyright: "© OpenStreetMap contributors © CARTO"
     })
   ],
-  title: "Light",
-  id: "light"
+  title: "Voyager",
+  id: "voyager"
 })
 
 const FILL_SYMBOL = new SimpleFillSymbol({
-  color: [107, 127, 91, 0.18],
-  outline: new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 4 })
+  color: [107, 127, 91, 0.22],
+  outline: new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 3.5 })
 })
 
-const LINE_SYMBOL = new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 4 })
+const LINE_SYMBOL = new SimpleLineSymbol({ color: [43, 51, 45, 1], width: 3.5 })
 
+// Historic landmarks in Richland Parish
 const LANDMARKS = [
   { name: "Richland Parish Courthouse", lon: -91.7554, lat: 32.4817 },
   { name: "Delhi Historic District",    lon: -91.4898, lat: 32.4579 },
   { name: "Mangham Town Hall",          lon: -91.7793, lat: 32.2995 },
-  { name: "Boeuf River Landing",        lon: -91.8050, lat: 32.3850 },
+  { name: "Holly Ridge Community",      lon: -91.7440, lat: 32.2287 },
+  { name: "Archibald Historic Site",    lon: -91.7204, lat: 32.5126 },
+  { name: "Girard Historic District",   lon: -91.6525, lat: 32.5357 },
+  { name: "Start Community",            lon: -91.8434, lat: 32.3115 },
+  { name: "Boeuf River Ferry Site",     lon: -91.8050, lat: 32.3850 },
+]
+
+// Water body label points — call out the two major waterways
+const WATER_LABELS = [
+  { name: "Boeuf River",  lon: -91.8220, lat: 32.4200 },
+  { name: "Bayou Macon",  lon: -91.5200, lat: 32.3800 },
 ]
 
 // Shield + star SVG — classic historic landmark marker shape
@@ -62,13 +74,26 @@ function makeLandmarkGraphics(landmark) {
       symbol: new TextSymbol({
         text: landmark.name,
         color: [43, 51, 45, 1],
-        haloColor: [255, 248, 240, 0.9],
+        haloColor: [255, 248, 240, 0.95],
         haloSize: 2,
         yoffset: -26,
-        font: { size: 10, family: "sans-serif", weight: "bold" }
+        font: { size: 9, family: "sans-serif", weight: "bold" }
       })
     })
   ]
+}
+
+function makeWaterLabelGraphic(w) {
+  return new Graphic({
+    geometry: new Point({ longitude: w.lon, latitude: w.lat }),
+    symbol: new TextSymbol({
+      text: w.name,
+      color: [40, 100, 160, 1],
+      haloColor: [255, 255, 255, 0.8],
+      haloSize: 2,
+      font: { size: 10, family: "sans-serif", style: "italic", weight: "bold" }
+    })
+  })
 }
 
 export default function ParishMap({ className = "" }) {
@@ -81,11 +106,14 @@ export default function ParishMap({ className = "" }) {
     })
 
     const landmarkLayer = new GraphicsLayer({
-      graphics: LANDMARKS.flatMap(makeLandmarkGraphics)
+      graphics: [
+        ...LANDMARKS.flatMap(makeLandmarkGraphics),
+        ...WATER_LABELS.map(makeWaterLabelGraphic),
+      ]
     })
 
     const map = new Map({
-      basemap: lightBasemap,
+      basemap,
       layers: [parishLayer, landmarkLayer]
     })
 
