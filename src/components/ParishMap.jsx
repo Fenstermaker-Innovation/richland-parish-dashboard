@@ -5,6 +5,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js"
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js"
 import Graphic from "@arcgis/core/Graphic.js"
 import Point from "@arcgis/core/geometry/Point.js"
+import Polyline from "@arcgis/core/geometry/Polyline.js"
 import Basemap from "@arcgis/core/Basemap.js"
 import WebTileLayer from "@arcgis/core/layers/WebTileLayer.js"
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer.js"
@@ -47,11 +48,31 @@ const LANDMARKS = [
   { name: "Boeuf River Ferry Site",     lon: -91.8050, lat: 32.3850 },
 ]
 
-// Water body label points — call out the two major waterways
-const WATER_LABELS = [
-  { name: "Boeuf River",  lon: -91.8220, lat: 32.4200 },
-  { name: "Bayou Macon",  lon: -91.5200, lat: 32.3800 },
+// Major waterways — simplified polyline paths through Richland Parish
+const RIVERS = [
+  {
+    name: "Boeuf River",
+    labelLon: -91.838, labelLat: 32.425,
+    // flows N→S through western Richland Parish
+    path: [
+      [-91.855, 32.570], [-91.848, 32.535], [-91.838, 32.498],
+      [-91.822, 32.462], [-91.810, 32.425], [-91.805, 32.388],
+      [-91.800, 32.350], [-91.795, 32.308], [-91.790, 32.270]
+    ]
+  },
+  {
+    name: "Bayou Macon",
+    labelLon: -91.510, labelLat: 32.415,
+    // flows N→S through eastern Richland Parish
+    path: [
+      [-91.548, 32.572], [-91.532, 32.535], [-91.518, 32.495],
+      [-91.505, 32.458], [-91.494, 32.418], [-91.483, 32.378],
+      [-91.472, 32.338], [-91.465, 32.285]
+    ]
+  }
 ]
+
+const RIVER_LINE = new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 3 })
 
 // Shield + star SVG — classic historic landmark marker shape
 const SHIELD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 32" width="26" height="32">
@@ -83,17 +104,26 @@ function makeLandmarkGraphics(landmark) {
   ]
 }
 
-function makeWaterLabelGraphic(w) {
-  return new Graphic({
-    geometry: new Point({ longitude: w.lon, latitude: w.lat }),
-    symbol: new TextSymbol({
-      text: w.name,
-      color: [40, 100, 160, 1],
-      haloColor: [255, 255, 255, 0.8],
-      haloSize: 2,
-      font: { size: 10, family: "sans-serif", style: "italic", weight: "bold" }
+function makeRiverGraphics(river) {
+  return [
+    new Graphic({
+      geometry: new Polyline({
+        paths: [river.path],
+        spatialReference: { wkid: 4326 }
+      }),
+      symbol: RIVER_LINE
+    }),
+    new Graphic({
+      geometry: new Point({ longitude: river.labelLon, latitude: river.labelLat }),
+      symbol: new TextSymbol({
+        text: river.name,
+        color: [30, 90, 155, 1],
+        haloColor: [255, 255, 255, 0.92],
+        haloSize: 2.5,
+        font: { size: 11, family: "sans-serif", style: "italic", weight: "bold" }
+      })
     })
-  })
+  ]
 }
 
 export default function ParishMap({ className = "" }) {
@@ -107,8 +137,8 @@ export default function ParishMap({ className = "" }) {
 
     const landmarkLayer = new GraphicsLayer({
       graphics: [
+        ...RIVERS.flatMap(makeRiverGraphics),
         ...LANDMARKS.flatMap(makeLandmarkGraphics),
-        ...WATER_LABELS.map(makeWaterLabelGraphic),
       ]
     })
 
