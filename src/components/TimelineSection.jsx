@@ -2,83 +2,81 @@ import { useState } from "react"
 
 const MILESTONES = [
   {
-    phase: "Phase 1",
-    title: "Project Kickoff",
-    date: "Spring 2025",
-    status: "complete",
-    description: "The project officially launched with the formation of the planning team, establishment of the advisory committee, and first stakeholder outreach. Initial scope, schedule, and public engagement strategy were finalized.",
-    bullets: [
-      "Project scope and schedule finalized",
-      "Advisory committee formed",
-      "Stakeholder mapping and initial outreach",
-      "Project website and engagement tools launched",
-    ]
-  },
-  {
-    phase: "Phase 2",
-    title: "Existing Conditions",
-    date: "Summer 2025",
-    status: "complete",
-    description: "A thorough analysis of current conditions across the parish was completed, establishing a data-driven baseline for all future planning decisions.",
-    bullets: [
-      "Land use inventory and mapping",
-      "Demographics, housing, and economic analysis",
-      "Infrastructure assessment (roads, utilities, broadband)",
-      "Environmental and natural resource review",
-      "Full Existing Conditions Report published",
-    ]
-  },
-  {
-    phase: "Phase 3",
-    title: "Community Engagement",
-    date: "Fall 2025 – Spring 2026",
+    phase: "Step 1",
+    title: "Listen & Learn",
     status: "active",
-    description: "This is where you come in. We're gathering community input through multiple channels to ensure every resident has a meaningful opportunity to shape the plan.",
+    description: "Gather data, trends & existing conditions. This is where we build the factual foundation for everything that follows — understanding who lives here, how land is used today, and what challenges and opportunities the parish faces.",
     bullets: [
-      "Public kickoff meeting and open houses",
-      "Online surveys and interactive map",
-      "Focus groups with farmers, business owners, and civic groups",
-      "Pop-up outreach at community events",
-      "Youth and school engagement",
+      "Collect and analyze demographic, housing, and economic data",
+      "Inventory existing land use and infrastructure conditions",
+      "Review current Master Plan and Zoning Code",
+      "Identify key trends and issues facing the parish",
+      "Establish baseline for all future planning decisions",
     ]
   },
   {
-    phase: "Phase 4",
-    title: "Draft Master Plan",
-    date: "Summer 2026",
+    phase: "Step 2",
+    title: "Share Vision",
     status: "upcoming",
-    description: "Community input is synthesized into a draft Master Plan that sets the long-range vision, goals, and policies for Richland Parish through 2045.",
+    description: "Hear from residents, businesses & stakeholders. Your voice shapes the direction of the plan. We're gathering community input through public meetings, surveys, focus groups, and outreach events across the parish.",
     bullets: [
-      "Vision statement and goals developed",
-      "Land use framework and future land use map",
-      "Policies for housing, transportation, and economic development",
-      "Draft released for 60-day public comment period",
+      "Public kickoff meetings and open houses",
+      "Online surveys and interactive community map",
+      "Focus groups with farmers, business owners, and civic organizations",
+      "Pop-up outreach at community events and gathering places",
+      "Engagement with youth, schools, and underrepresented groups",
     ]
   },
   {
-    phase: "Phase 5",
-    title: "Draft Zoning Code",
-    date: "Fall 2026",
+    phase: "Step 3",
+    title: "Goals & Strategies",
     status: "upcoming",
-    description: "The Zoning Code update translates the Master Plan's vision into enforceable regulations — determining what can be built where, at what scale, and under what conditions.",
+    description: "Turn the vision into actionable objectives. Community input is synthesized into a clear set of goals and strategies that reflect Richland Parish's shared priorities for land use, growth, and quality of life.",
     bullets: [
-      "Updated zoning districts and permitted uses",
-      "Development standards and design guidelines",
-      "Agricultural and environmental protections",
-      "Public hearing and comment period",
+      "Draft vision statement rooted in community input",
+      "Develop goals for each planning topic area",
+      "Identify strategies to achieve each goal",
+      "Review and refine with advisory committee",
+      "Present goals and strategies for community feedback",
     ]
   },
   {
-    phase: "Phase 6",
-    title: "Adoption",
-    date: "Early 2027",
+    phase: "Step 4",
+    title: "Action Plan",
     status: "upcoming",
-    description: "Following final public hearings, both the Master Plan and Zoning Code are formally adopted by the Richland Parish Police Jury, becoming the official guiding documents for the parish.",
+    description: "Prioritize projects, policies, and investments. The Action Plan turns strategies into a realistic implementation roadmap — identifying what gets done, by whom, and in what order, with a future land use map to guide development decisions.",
     bullets: [
+      "Future land use map development",
+      "Policy recommendations by topic area",
+      "Capital improvement and infrastructure priorities",
+      "Implementation assignments and timelines",
+      "Updated Development Code framework",
+    ]
+  },
+  {
+    phase: "Step 5",
+    title: "Public Review & Adoption",
+    status: "upcoming",
+    description: "Present the draft plan and gather final feedback. The complete draft Master Plan and Development Code are released for public review, followed by formal public hearings and adoption by the Richland Parish Police Jury.",
+    bullets: [
+      "Draft Master Plan released for 60-day public comment",
+      "Draft Development Code released for review",
+      "Public hearings before the Planning Commission",
       "Final revisions based on public comment",
-      "Planning commission review and recommendation",
-      "Police Jury public hearing",
-      "Official adoption and implementation",
+      "Formal adoption by the Richland Parish Police Jury",
+    ]
+  },
+  {
+    phase: "Step 6",
+    title: "Implementation",
+    status: "upcoming",
+    description: "Put the plan into action & monitor results. Adoption is the beginning, not the end. The Implementation phase puts the plan to work — tracking progress, making updates as conditions change, and ensuring the community's vision becomes reality.",
+    bullets: [
+      "Integrate Master Plan policies into day-to-day decisions",
+      "Pursue funding and grants for priority projects",
+      "Track progress against goals and benchmarks",
+      "Annual review and reporting to Police Jury",
+      "Update plan as needed to reflect changing conditions",
     ]
   },
 ]
@@ -89,13 +87,13 @@ const STATUS = {
     ring: "ring-sage/40",
     badge: "bg-sage/15 text-sage border-sage/30",
     label: "Completed",
-    title: "text-sage",
+    title: "text-forest",
   },
   active: {
     dot: "bg-eucalyptus border-eucalyptus text-forest",
     ring: "ring-eucalyptus/40",
     badge: "bg-eucalyptus/15 text-eucalyptus border-eucalyptus/30",
-    label: "In Progress",
+    label: "We Are Here",
     title: "text-forest",
   },
   upcoming: {
@@ -107,7 +105,6 @@ const STATUS = {
   },
 }
 
-// How far the progress line extends: up to the midpoint of the active phase
 const activeIdx = MILESTONES.findIndex(m => m.status === "active")
 const progressPct = activeIdx !== -1
   ? ((activeIdx + 0.5) / (MILESTONES.length - 1)) * 100
@@ -128,13 +125,13 @@ export default function TimelineSection() {
       <div className="max-w-5xl mx-auto">
 
         <div className="text-center mb-16">
-          <p className="section-label text-forest">Project Timeline</p>
+          <p className="section-label text-forest">Planning Process</p>
           <h2 className="font-serif text-forest text-4xl lg:text-5xl font-semibold mb-5">
-            From Vision to Adoption
+            We Are Just Getting Started
           </h2>
           <p className="font-sans text-forest/55 text-base max-w-xl mx-auto leading-relaxed">
-            A two-year process built around community participation at every stage.
-            Select a phase to learn more.
+            We will be looking for your voice, input, and vision to help develop the Master Plan.
+            Select a step to learn more.
           </p>
         </div>
 
@@ -219,7 +216,6 @@ export default function TimelineSection() {
                   <span className={`font-sans text-[10px] px-2.5 py-1 border ${s.badge}`}>
                     {s.label}
                   </span>
-                  <span className="font-sans text-xs text-forest/40">{current.date}</span>
                   <button
                     onClick={() => setSelected(null)}
                     aria-label="Close"
@@ -249,7 +245,7 @@ export default function TimelineSection() {
         </div>
 
         <p className="font-sans text-forest/30 text-xs text-center mt-10">
-          Timeline is subject to change. Sign up under &ldquo;Stay Engaged&rdquo; to receive updates.
+          Community input will be a key component throughout the life of the planning process.
         </p>
 
       </div>

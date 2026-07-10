@@ -13,7 +13,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="font-sans text-forest/50 text-xs tracking-widest uppercase mb-6">
-          Richland Parish Master Plan &amp; Zoning Code Update
+          Planning Today for a Stronger Tomorrow
         </p>
 
         <p className="font-sans text-forest/60 text-base leading-relaxed mb-10 max-w-md">

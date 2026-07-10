@@ -1,23 +1,23 @@
 const LEARN_CARDS = [
   {
     label: "Master Plan",
-    title: "A Roadmap for Richland Parish",
+    title: "A Roadmap for Our Parish",
     body:
-      "A Master Plan is a long-range policy document that guides how a community grows and changes over time. It addresses land use, transportation, housing, economic development, parks, and more — shaped by the values of the people who live here.",
+      "A Comprehensive Master Plan is a roadmap for our Parish growth and development. It's a strategic document that outlines our collective, community influenced vision for the future, guiding decisions on everything from land use to roads and other infrastructure, industry, parks, housing and more. A Comprehensive Master Plan allows communities like Richland Parish to be intentional about how they evolve over time, what they prioritize, and what they preserve.",
     icon: "🗺"
   },
   {
-    label: "Zoning Code",
-    title: "The Rules That Shape Your Neighborhood",
+    label: "Development Code",
+    title: "The Rules That Guide Growth",
     body:
-      "A Zoning Code translates the vision of the Master Plan into enforceable regulations — determining what can be built where, how tall, how close to the street, and how land is used. A modern code supports the kind of community residents actually want.",
+      "Development rules (like zoning) is a set of local regulations that guide how land and buildings are used and developed within a community. It establishes standards for development and helps promote orderly growth, reduce land use conflicts, protect property values, and support the community's long-term vision. Zoning does not dictate what property owners must build.",
     icon: "📐"
   },
   {
-    label: "Why Now",
-    title: "The Right Moment for Richland Parish",
+    label: "Why It Matters",
+    title: "Planning Today for a Stronger Tomorrow",
     body:
-      "Richland Parish is at a pivotal moment. Updating the Master Plan and Zoning Code now means the community — not just market forces — steers what comes next. Your participation is what makes that possible.",
+      "A comprehensive plan that guides smart growth, preserves our community, and enhances the quality of life for all. Community input will be a key component throughout the life of the planning process — your voice, input, and vision help develop the Master Plan.",
     icon: "🌱"
   }
 ]
