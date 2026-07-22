@@ -5,12 +5,13 @@ export default function Footer() {
 
         {/* Branding */}
         <div className="flex flex-col items-center md:items-start">
-          <span className="font-serif font-bold text-ivory text-base tracking-wider">RICHLAND</span>
-          <span className="font-serif text-sage text-xs" style={{ letterSpacing: "0.35em" }}>
-            PARISH
-          </span>
-          <p className="font-sans text-xs mt-1 text-eucalyptus italic">Rooted in Richland</p>
-          <p className="font-sans text-xs mt-2 text-ivory/30">Community Master Plan &amp; Zoning Code</p>
+          <img
+            src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+            alt="Rooted in Richland"
+            className="h-14 w-auto mb-3"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
+          <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Zoning Code Update</p>
           <p className="font-sans text-xs mt-6 text-ivory/20">
             &copy; {new Date().getFullYear()} Richland Parish
           </p>

@@ -80,6 +80,11 @@ export default function AboutSection() {
 
         {/* Heading */}
         <div className="text-center mb-16">
+          <img
+            src={`${import.meta.env.BASE_URL}images/logos/alt.png`}
+            alt="Rooted in Richland"
+            className="w-40 h-40 mx-auto mb-8 rounded-full"
+          />
           <p className="section-label text-sage">About the Plan</p>
           <h2 className="font-serif text-ivory text-4xl lg:text-5xl font-semibold mb-4">
             Project Background
@@ -137,6 +142,14 @@ export default function AboutSection() {
 
         {/* Guiding Principles */}
         <div>
+          <div className="flex justify-center mb-10">
+            <img
+              src={`${import.meta.env.BASE_URL}images/logos/roots.png`}
+              alt="Strong Roots, Smart Growth"
+              className="w-80 opacity-75"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
+          </div>
           <p className="font-sans text-xs text-sage tracking-widest uppercase text-center mb-10">
             Guiding Principles
           </p>

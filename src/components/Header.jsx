@@ -51,11 +51,13 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
         {/* Logo */}
-        <a href="#" className="flex flex-col leading-none flex-shrink-0">
-          <span className="font-serif font-bold text-ivory text-lg tracking-wider">RICHLAND PARISH</span>
-          <span className="font-sans text-eucalyptus text-[10px] tracking-wide mt-0.5">
-            Master Plan &amp; Zoning Code Update
-          </span>
+        <a href="#" className="flex-shrink-0">
+          <img
+            src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+            alt="Rooted in Richland"
+            className="h-10 w-auto"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </a>
 
         {/* Desktop nav */}
