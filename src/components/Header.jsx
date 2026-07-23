@@ -49,15 +49,19 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${scrolled ? "shadow-md" : ""}`}
       style={{ backgroundColor: "#1D3521" }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+      <div className="w-full px-6 py-4 flex items-center justify-between gap-6">
         {/* Logo */}
-        <a href="#" className="flex-shrink-0">
-          <img
-            src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
-            alt="Rooted in Richland"
-            className="h-10 w-auto"
-            style={{ filter: "brightness(0) invert(1)" }}
-          />
+        <a href="#" className="flex items-center gap-3 flex-shrink-0">
+          <div className="overflow-hidden h-[45px] flex-shrink-0">
+            <img
+              src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+              alt="Rooted in Richland"
+              className="h-16 w-auto -mt-[9.5px]"
+            />
+          </div>
+          <span className="font-sans text-eucalyptus text-xs tracking-wide leading-snug hidden sm:block">
+            Master Plan &amp;<br />Zoning Code Update
+          </span>
         </a>
 
         {/* Desktop nav */}

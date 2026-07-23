@@ -7,11 +7,13 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col justify-center px-10 py-32 lg:py-0 lg:w-5/12 lg:px-16 xl:px-24 bg-ivory">
         <p className="section-label mb-6">Rooted in Richland</p>
 
-        <img
-          src={`${import.meta.env.BASE_URL}images/logos/master-plan.png`}
-          alt="Rooted in Richland — Richland Parish Master Plan"
-          className="w-full max-w-sm mb-8"
-        />
+        <div className="flex justify-center mb-8">
+          <img
+            src={`${import.meta.env.BASE_URL}images/logos/master-plan.png`}
+            alt="Rooted in Richland — Richland Parish Master Plan"
+            className="w-full max-w-sm border border-forest/30 p-2"
+          />
+        </div>
 
         <h1 className="font-serif text-forest leading-tight mb-3" style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}>
           Preserving What Matters.

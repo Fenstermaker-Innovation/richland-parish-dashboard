@@ -147,7 +147,6 @@ export default function AboutSection() {
               src={`${import.meta.env.BASE_URL}images/logos/roots.png`}
               alt="Strong Roots, Smart Growth"
               className="w-80 opacity-75"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </div>
           <p className="font-sans text-xs text-sage tracking-widest uppercase text-center mb-10">
