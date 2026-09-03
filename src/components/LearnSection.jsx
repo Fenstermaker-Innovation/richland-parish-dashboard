@@ -55,7 +55,7 @@ export default function LearnSection() {
           ))}
         </div>
 
-        {/* StoryMap embed placeholder */}
+        {/* StoryMap embed placeholder
         <div className="border border-eucalyptus/30 p-1 bg-sand">
           <div className="bg-ivory border-2 border-dashed border-eucalyptus/40 p-16 text-center">
             <p className="font-serif text-forest/40 text-xl mb-2">Interactive StoryMap</p>
@@ -67,6 +67,7 @@ export default function LearnSection() {
             </p>
           </div>
         </div>
+         */}
       </div>
     </section>
   )
