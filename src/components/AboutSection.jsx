@@ -90,7 +90,7 @@ export default function AboutSection() {
             Project Background
           </h2>
           <p className="font-serif text-eucalyptus text-xl italic mb-6">
-            Preserving What Matters. Planning What&rsquo;s Next.
+            Strong Roots, Smart Growth.
           </p>
           <p className="font-sans text-ivory/60 text-base max-w-2xl mx-auto leading-relaxed">
             Richland Parish is updating its Master Plan and Zoning Code for the first time in
@@ -115,8 +115,8 @@ export default function AboutSection() {
             data and driven by the people who call this parish home.
           </p>
           <p className="font-sans text-ivory/75 text-sm leading-relaxed">
-            The planning process is led by Fenstermaker, with oversight from parish leadership
-            and an advisory committee of residents and stakeholders. All major milestones
+            he planning process is guided by parish leadership and an advisory committee
+            of residents and stakeholders. All major milestones
             include public comment periods and open meetings.
           </p>
         </div>
