@@ -25,8 +25,8 @@ export default function App() {
         <CommunityVoiceSection />
         <LearnSection />
         <ExistingConditionsSection />
-        <LandUseSection />
-        <DocumentsSection />
+        {/* <LandUseSection /> */}
+        {/* <DocumentsSection /> */}
         <StayEngagedSection />
         <EventsSection />
         <InteractiveMapSection />
