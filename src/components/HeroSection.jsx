@@ -16,8 +16,8 @@ export default function HeroSection() {
         </div>
 
         <h1 className="font-serif text-forest leading-tight mb-3" style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}>
-          Preserving What Matters.
-          <span className="block text-sage">Planning What's Next.</span>
+          Strong Roots,
+          <span className="block text-sage">Smart Growth.</span>
         </h1>
 
         <p className="font-sans text-forest/50 text-xs tracking-widest uppercase mb-6">
