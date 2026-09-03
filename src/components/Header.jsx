@@ -4,9 +4,9 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Timeline", href: "#timeline" },
   { label: "Community Voice", href: "#community-voice" },
-  { label: "Events", href: "#events" },
-  { label: "Documents", href: "#documents" },
+  // { label: "Documents", href: "#documents" },
   { label: "Get Involved", href: "#stay-engaged" },
+  { label: "Events", href: "#events" },
 ]
 
 function TranslateWidget() {
