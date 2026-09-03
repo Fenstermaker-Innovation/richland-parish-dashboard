@@ -54,7 +54,7 @@ export default function Header() {
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
           <div className="overflow-hidden h-[45px] flex-shrink-0">
             <img
-              src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+              src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
               alt="Rooted in Richland"
               className="h-16 w-auto -mt-[9.5px]"
             />
