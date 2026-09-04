@@ -56,7 +56,7 @@ export default function Header() {
             <img
               src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
               alt="Rooted in Richland"
-              className="h-full w-auto object-contain"
+              className="h-16 w-16 rounded-full object-cover mb-3"
             />
           </div>
           <span className="font-sans text-eucalyptus text-xs tracking-wide leading-snug hidden sm:block">
