@@ -1,10 +1,10 @@
 const STATS = [
-  { value: "~20,100", label: "Total Population", sub: "2020 Census", icon: "👥" },
-  { value: "559 mi²", label: "Parish Area", sub: "Land + water", icon: "🗺" },
-  { value: "8,400", label: "Housing Units", sub: "~78% owner-occupied", icon: "🏘" },
-  { value: "$115K", label: "Median Home Value", sub: "Below state average", icon: "🏡" },
-  { value: "85%", label: "Agricultural Land", sub: "Cropland & pasture", icon: "🌾" },
-  { value: "8.2%", label: "Unemployment Rate", sub: "Higher than LA average", icon: "📊" },
+  { value: "8,734", label: "Housing Units", sub: "U.S. Census Bureau", icon: "🏘️" },
+  { value: "67%", label: "Owner Occupied", sub: "U.S. Census Bureau", icon: "🏡" },
+  { value: "41%", label: "Agricultural Land", sub: "LSU AgCenter", icon: "🌾" },
+  { value: "5.2%", label: "Unemployment Rate", sub: "U.S. Bureau of Labor Statistics", icon: "📊" },
+  { value: "1979", label: "Median Build Year", sub: "U.S. Census Bureau", icon: "🏗️" },
+  { value: "$53,544", label: "Median Household Income", sub: "U.S. Census Bureau", icon: "💵" },
 ]
 
 const TOPICS = [
@@ -21,7 +21,7 @@ const TOPICS = [
   {
     title: "Housing",
     items: [
-      "High homeownership rate but aging housing stock (median build year ~1973)",
+      "High homeownership rate but aging housing stock (median build year ~1979)",
       "Limited multifamily and workforce housing options",
       "Manufactured housing is common in rural areas",
       "Some concentration of substandard units in older neighborhoods",
@@ -33,8 +33,8 @@ const TOPICS = [
     items: [
       "Population has declined modestly over the past two decades",
       "Median age is rising — parish is aging faster than the state average",
-      "About 42% of residents identify as Black or African American",
-      "Median household income is approximately $38,000",
+      "About 36% of residents identify as Black or African American",
+      "Median household income is approximately $53,000",
       "Educational attainment rates are below Louisiana averages",
     ]
   },
