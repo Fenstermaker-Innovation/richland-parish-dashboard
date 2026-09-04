@@ -8,7 +8,7 @@ export default function Footer() {
           <img
             src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
             alt="Rooted in Richland"
-            className="h-16 w-auto object-contain mb-3"
+            className="h-16 w-16 rounded-full object-cover mb-3"
           />
           <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Zoning Code Update</p>
           <p className="font-sans text-xs mt-6 text-ivory/20">
@@ -45,9 +45,9 @@ export default function Footer() {
             For all your contact needs please contact:
           </p>
           <p className="font-serif text-ivory text-sm font-semibold leading-snug">
-            Wade Hamilton
+            <span className="text-ivory">Wade Hamilton</span>
+            <span className="font-sans text-xs text-eucalyptus">, P.E.</span>
           </p>
-          <p className="font-sans text-xs text-eucalyptus mt-0.5">P.E.</p>
           <p className="font-sans text-xs text-ivory/50 mt-1">Engineer</p>
           <a
             href="mailto:whamilton@fenstermaker.com"
