@@ -16,6 +16,7 @@ import Zoom from "@arcgis/core/widgets/Zoom.js"
 import { PARISH_BOUNDARY_URL } from "../config/esri.js"
 
 // CartoDB Positron — clean light basemap with streets, no API key required
+/*
 const basemap = new Basemap({
   baseLayers: [
     new WebTileLayer({
@@ -27,6 +28,7 @@ const basemap = new Basemap({
   title: "Light",
   id: "light"
 })
+/*
 
 const FILL_SYMBOL = new SimpleFillSymbol({
   color: [53, 94, 59, 0.22],
@@ -117,7 +119,7 @@ export default function ParishMap({ className = "" }) {
     })
 
     const map = new Map({
-      basemap,
+      basemap: "gray-vector",
       layers: [parishLayer, channelLayer, landmarkLayer]
     })
 
