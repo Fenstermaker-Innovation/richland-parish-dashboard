@@ -105,7 +105,7 @@ export default function ParishMap({ className = "" }) {
       url: "https://services9.arcgis.com/QClEuaPkoZwU6r3B/arcgis/rest/services/Richland_Main_Channels/FeatureServer/0",
       popupEnabled: false,
       renderer: new SimpleRenderer({
-        symbol: new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 2.5 })
+        symbol: new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 1.5 })
       })
     })
 
