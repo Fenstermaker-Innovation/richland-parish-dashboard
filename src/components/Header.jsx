@@ -52,11 +52,11 @@ export default function Header() {
       <div className="w-full px-6 py-4 flex items-center justify-between gap-6">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
-          <div className="overflow-hidden h-[45px] flex-shrink-0">
+          <div className="h-[50px] flex items-center flex-shrink-0">
             <img
               src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
               alt="Rooted in Richland"
-              className="h-16 w-auto -mt-[9.5px]"
+              className="h-full w-auto object-contain"
             />
           </div>
           <span className="font-sans text-eucalyptus text-xs tracking-wide leading-snug hidden sm:block">
