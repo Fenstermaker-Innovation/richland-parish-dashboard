@@ -6,10 +6,9 @@ export default function Footer() {
         {/* Branding */}
         <div className="flex flex-col items-center md:items-start">
           <img
-            src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+            src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
             alt="Rooted in Richland"
-            className="h-14 w-auto mb-3"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className="h-16 w-auto object-contain mb-3"
           />
           <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Zoning Code Update</p>
           <p className="font-sans text-xs mt-6 text-ivory/20">
@@ -25,9 +24,9 @@ export default function Footer() {
             { label: "Timeline",        href: "#timeline" },
             { label: "Community Voice", href: "#community-voice" },
             { label: "Events",          href: "#events" },
-            { label: "Documents",       href: "#documents" },
-            { label: "Interactive Map", href: "#interactive-map" },
-            { label: "Live Responses",  href: "#live-responses" },
+            // { label: "Documents",       href: "#documents" },
+            // { label: "Interactive Map", href: "#interactive-map" },
+            // { label: "Live Responses",  href: "#live-responses" },
           ].map(({ label, href }) => (
             <a
               key={href}
@@ -46,20 +45,20 @@ export default function Footer() {
             For all your contact needs please contact:
           </p>
           <p className="font-serif text-ivory text-sm font-semibold leading-snug">
-            Anna Wyble Doucet
+            Wade Hamilton
           </p>
-          <p className="font-sans text-xs text-eucalyptus mt-0.5">DOFAT, MBA, P.E.</p>
-          <p className="font-sans text-xs text-ivory/50 mt-1">Engineer Manager</p>
+          <p className="font-sans text-xs text-eucalyptus mt-0.5">P.E.</p>
+          <p className="font-sans text-xs text-ivory/50 mt-1">Engineer</p>
           <a
-            href="mailto:anna@fenstermaker.com"
+            href="mailto:whamilton@fenstermaker.com"
             className="font-sans text-xs text-sage hover:text-ivory transition-colors mt-3"
           >
-            anna@fenstermaker.com
+            whamilton@fenstermaker.com
           </a>
           <div className="font-sans text-xs text-ivory/50 mt-1.5 flex items-center gap-2">
-            <span>337.237.2200</span>
+            <span>225.344.6701</span>
             <span className="text-ivory/20">·</span>
-            <span>x1272</span>
+            <span>x1527</span>
           </div>
         </div>
 
