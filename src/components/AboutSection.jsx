@@ -115,7 +115,7 @@ export default function AboutSection() {
             data and driven by the people who call this parish home.
           </p>
           <p className="font-sans text-ivory/75 text-sm leading-relaxed">
-            he planning process is guided by parish leadership and an advisory committee
+            The planning process is guided by parish leadership and an advisory committee
             of residents and stakeholders. All major milestones
             include public comment periods and open meetings.
           </p>
