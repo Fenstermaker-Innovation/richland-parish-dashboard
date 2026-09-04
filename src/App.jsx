@@ -29,8 +29,8 @@ export default function App() {
         {/* <DocumentsSection /> */}
         <StayEngagedSection />
         <EventsSection />
-        <InteractiveMapSection />
-        <LiveResponsesSection />
+        {/* <InteractiveMapSection /> */}
+        {/* <LiveResponsesSection /> */}
       </main>
       <Footer />
       <BottomBar />
