@@ -28,7 +28,7 @@ const basemap = new Basemap({
   title: "Light",
   id: "light"
 })
-/*
+*/
 
 const FILL_SYMBOL = new SimpleFillSymbol({
   color: [53, 94, 59, 0.22],
