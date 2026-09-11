@@ -1,6 +1,6 @@
 const PILLARS = {
   preserve: {
-    headline: "Preserving What Matters",
+    headline: "Strong Roots",
     color: "border-sage",
     dotColor: "bg-sage/60",
     labelColor: "text-sage",
@@ -14,7 +14,7 @@ const PILLARS = {
     ]
   },
   plan: {
-    headline: "Planning What's Next",
+    headline: "Smart Growth",
     color: "border-eucalyptus",
     dotColor: "bg-eucalyptus/60",
     labelColor: "text-eucalyptus",
@@ -93,8 +93,8 @@ export default function AboutSection() {
             Strong Roots, Smart Growth.
           </p>
           <p className="font-sans text-ivory/60 text-base max-w-2xl mx-auto leading-relaxed">
-            Richland Parish is updating its Master Plan and Zoning Code for the first time in
-            over two decades. This project is your community&rsquo;s opportunity to shape the policies,
+            Richland Parish is developing a Master Plan and updating its Development Code. 
+            This project is your community&rsquo;s opportunity to shape the policies,
             priorities, and land-use rules that will guide the parish through 2045 and beyond.
           </p>
         </div>
@@ -103,25 +103,24 @@ export default function AboutSection() {
         <div className="border-l-2 border-sage/40 pl-8 mb-16 max-w-3xl mx-auto">
           <p className="font-sans text-xs text-sage tracking-widest uppercase mb-4">Background</p>
           <p className="font-sans text-ivory/75 text-sm leading-relaxed mb-5">
-            A Master Plan is a long-range policy document that sets a shared vision for land
+            A Master Plan is a long-term planning document that sets a shared vision for land
             use, transportation, housing, economic development, natural resources, and public
-            services. The Zoning Code is the legal tool that carries that vision into daily
+            services. The Development Code is the legal tool that carries that vision into daily
             decisions — what gets built, where, and how.
           </p>
           <p className="font-sans text-ivory/75 text-sm leading-relaxed mb-5">
-            Richland Parish&rsquo;s current plan dates to the early 2000s. In the years since,
-            the parish has seen changes in agriculture, infrastructure, demographics, and
-            economic opportunity. This update addresses those shifts head-on, grounded in
+            Richland Parish has experienced changes in agriculture, infrastructure, demographics, and
+            economic opportunity. This plan addresses those shifts head-on, grounded in
             data and driven by the people who call this parish home.
           </p>
           <p className="font-sans text-ivory/75 text-sm leading-relaxed">
-            The planning process is guided by parish leadership and an advisory committee
-            of residents and stakeholders. All major milestones
-            include public comment periods and open meetings.
+            The planning process is guided by Parish leadership, key stakeholders, and yourself! 
+            All major deliverables will be put in front of the community for public comment and the
+            plan will be guided by input from public meetings and surveys.
           </p>
         </div>
 
-        {/* Two-pillar framework */}
+        {/* Two-pillar framework 
         <div className="grid md:grid-cols-2 gap-6 mb-20">
           {Object.values(PILLARS).map((pillar) => (
             <div key={pillar.headline} className={`border-t-2 ${pillar.color} pt-7 px-8 pb-8 bg-ivory/5`}>
@@ -139,6 +138,7 @@ export default function AboutSection() {
             </div>
           ))}
         </div>
+        */}
 
         {/* Guiding Principles */}
         <div>
