@@ -3,21 +3,21 @@ import { useState } from "react"
 const MILESTONES = [
   {
     phase: "Step 1",
-    title: "Listen & Learn",
-    status: "active",
+    title: "Learn",
+    status: "complete",
     description: "Gather data, trends & existing conditions. This is where we build the factual foundation for everything that follows — understanding who lives here, how land is used today, and what challenges and opportunities the parish faces.",
     bullets: [
       "Collect and analyze demographic, housing, and economic data",
       "Inventory existing land use and infrastructure conditions",
-      "Review current Master Plan and Zoning Code",
+      "Review current Development Code",
       "Identify key trends and issues facing the parish",
       "Establish baseline for all future planning decisions",
     ]
   },
   {
     phase: "Step 2",
-    title: "Share Vision",
-    status: "upcoming",
+    title: "Crafting the Vision",
+    status: "active",
     description: "Hear from residents, businesses & stakeholders. Your voice shapes the direction of the plan. We're gathering community input through public meetings, surveys, focus groups, and outreach events across the parish.",
     bullets: [
       "Public kickoff meetings and open houses",
@@ -42,7 +42,7 @@ const MILESTONES = [
   },
   {
     phase: "Step 4",
-    title: "Action Plan",
+    title: "Taking Action",
     status: "upcoming",
     description: "Prioritize projects, policies, and investments. The Action Plan turns strategies into a realistic implementation roadmap — identifying what gets done, by whom, and in what order, with a future land use map to guide development decisions.",
     bullets: [
