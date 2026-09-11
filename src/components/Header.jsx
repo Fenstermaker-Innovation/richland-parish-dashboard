@@ -60,7 +60,7 @@ export default function Header() {
             />
           </div>
           <span className="font-sans text-eucalyptus text-xs tracking-wide leading-snug hidden sm:block">
-            Master Plan &amp;<br />Zoning Code Update
+            Master Plan &amp;<br />Development Code Update
           </span>
         </a>
 
