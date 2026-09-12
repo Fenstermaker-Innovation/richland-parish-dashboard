@@ -8,13 +8,13 @@ export default function BottomBar() {
         </div>
 
         <div className="flex flex-col items-center">
-          <p className="font-serif italic text-sage text-lg lg:text-xl tracking-widest whitespace-nowrap"
+          <p className="font-serif italic font-semibold text-sage text-lg lg:text-xl tracking-widest whitespace-nowrap"
              style={{ letterSpacing: "0.18em" }}>
             Rooted in Richland
           </p>
-          <p className="font-sans text-eucalyptus/50 text-[10px] tracking-widest whitespace-nowrap hidden sm:block"
+          <p className="font-sans font-semibold text-eucalyptus/80 text-[10px] tracking-widest whitespace-nowrap hidden sm:block"
              style={{ letterSpacing: "0.12em" }}>
-            Preserving What Matters. Planning What&rsquo;s Next.
+            Strong Roots, Smart Growth.
           </p>
         </div>
 
