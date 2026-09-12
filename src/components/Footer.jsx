@@ -10,7 +10,7 @@ export default function Footer() {
             alt="Rooted in Richland"
             className="h-16 w-16 rounded-full object-cover mb-3"
           />
-          <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Zoning Code Update</p>
+          <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Development Code Update</p>
           <p className="font-sans text-xs mt-6 text-ivory/20">
             &copy; {new Date().getFullYear()} Richland Parish
           </p>
