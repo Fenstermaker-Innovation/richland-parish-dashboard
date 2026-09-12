@@ -13,7 +13,7 @@ export default function BottomBar() {
             Rooted in Richland
           </p>
           <p className="font-sans font-bold text-eucalyptus text-[10px] tracking-widest whitespace-nowrap hidden sm:block"
-             style={{ letterSpacing: "0.12em", WebkitTextStroke: "0.25px #8A7045" }}>
+             style={{ letterSpacing: "0.12em", textShadow: "0.5px 0.5px 0 rgba(125, 96, 20, 0.7)" }}>
             Strong Roots, Smart Growth.
           </p>
         </div>
