@@ -23,8 +23,8 @@ const TOPICS = [
     items: [
       "High homeownership rate but aging housing stock (median build year ~1979)",
       "Limited multifamily and workforce housing options",
-      "Manufactured housing is common in rural areas",
-      "Some concentration of substandard units in older neighborhoods",
+      "Diverse types of housing throughout the Parish with a large portion being manufactured housing",
+      "Concentrations of substandard housing located primarily in older neighborhoods",
       "Need for accessible and senior-friendly housing options is growing",
     ]
   },
