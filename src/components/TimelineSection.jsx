@@ -59,8 +59,8 @@ const MILESTONES = [
     status: "upcoming",
     description: "Present the draft plan and gather final feedback. The complete draft Master Plan and Development Code are released for public review, followed by formal public hearings and adoption by the Richland Parish Police Jury.",
     bullets: [
-      "Draft Master Plan released for 60-day public comment",
-      "Draft Development Code released for review",
+      "Draft Master Plan released for public comment",
+      "Draft Development Code to be presented to Police Jury",
       "Public hearings before the Planning Commission",
       "Final revisions based on public comment",
       "Formal adoption by the Richland Parish Police Jury",
@@ -70,13 +70,11 @@ const MILESTONES = [
     phase: "Step 6",
     title: "Implementation",
     status: "upcoming",
-    description: "Put the plan into action & monitor results. Adoption is the beginning, not the end. The Implementation phase puts the plan to work — tracking progress, making updates as conditions change, and ensuring the community's vision becomes reality.",
+    description: "Put the plan into action & monitor results. Adoption is the beginning, not the end.",
     bullets: [
-      "Integrate Master Plan policies into day-to-day decisions",
-      "Pursue funding and grants for priority projects",
-      "Track progress against goals and benchmarks",
-      "Annual review and reporting to Police Jury",
-      "Update plan as needed to reflect changing conditions",
+      "Develop an implementation plan for the Master Plan",
+      "Designate roles and responsibilities for implementing the actions of the master plan",
+      "Work with the Parish to establish a government structure that is successfully able to enforce the development code",
     ]
   },
 ]
