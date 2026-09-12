@@ -12,7 +12,7 @@ export default function BottomBar() {
              style={{ letterSpacing: "0.18em" }}>
             Rooted in Richland
           </p>
-          <p className="font-sans font-semibold text-eucalyptus/80 text-[10px] tracking-widest whitespace-nowrap hidden sm:block"
+          <p className="font-sans font-bold text-eucalyptus text-[10px] tracking-widest whitespace-nowrap hidden sm:block"
              style={{ letterSpacing: "0.12em" }}>
             Strong Roots, Smart Growth.
           </p>
