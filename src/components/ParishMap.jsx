@@ -144,7 +144,7 @@ export default function ParishMap({ className = "" }) {
 
         parishLayer.queryExtent().then((result) => {
           if (!result?.extent) return
-          const paddedExtent = result.extent.expand(1.5)
+          const paddedExtent = result.extent.expand(1.35)
           view.goTo(paddedExtent, { duration: 1200 }).then(() => {
             view.constraints.geometry = paddedExtent
             view.constraints.minScale = view.scale * 1.05
