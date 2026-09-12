@@ -1,10 +1,10 @@
 const STATS = [
-  { value: "8,734", label: "Housing Units", sub: "U.S. Census Bureau", icon: "🏘️" },
-  { value: "67%", label: "Owner Occupied", sub: "U.S. Census Bureau", icon: "🏡" },
-  { value: "41%", label: "Agricultural Land", sub: "LSU AgCenter", icon: "🌾" },
-  { value: "5.2%", label: "Unemployment Rate", sub: "U.S. Bureau of Labor Statistics", icon: "📊" },
-  { value: "1979", label: "Median Build Year", sub: "U.S. Census Bureau", icon: "🏗️" },
-  { value: "$53,544", label: "Median Household Income", sub: "U.S. Census Bureau", icon: "💵" },
+  { value: "8,849", label: "Housing Units", sub: "U.S. Census Bureau", year: "2025", icon: "🏘️" },
+  { value: "67%", label: "Owner Occupied", sub: "U.S. Census Bureau", year: "2024", icon: "🏡" },
+  { value: "41%", label: "Agricultural Land", sub: "LSU AgCenter", year: "2025", icon: "🌾" },
+  { value: "5.2%", label: "Unemployment Rate", sub: "U.S. Bureau of Labor Statistics", year: "2026", icon: "📊" },
+  { value: "1979", label: "Median Build Year", sub: "U.S. Census Bureau", year: "2024", icon: "🏗️" },
+  { value: "$53,544", label: "Median Household Income", sub: "U.S. Census Bureau", year: "2024", icon: "💵" },
 ]
 
 const TOPICS = [
@@ -63,7 +63,9 @@ export default function ExistingConditionsSection() {
               <span className="text-2xl">{s.icon}</span>
               <p className="font-serif text-ivory text-3xl font-semibold mt-1">{s.value}</p>
               <p className="font-sans text-ivory/80 text-sm font-medium">{s.label}</p>
-              <p className="font-sans text-ivory/35 text-xs">{s.sub}</p>
+              <p className="font-sans text-ivory/35 text-xs">
+                {s.sub} · <span className="italic">{s.year}</span>
+              </p>
             </div>
           ))}
         </div>
@@ -85,10 +87,11 @@ export default function ExistingConditionsSection() {
           ))}
         </div>
 
-        <p className="font-sans text-ivory/20 text-xs text-center mt-12">
+        {/* <p className="font-sans text-ivory/20 text-xs text-center mt-12">
           Sources: U.S. Census Bureau (2020), American Community Survey (2019–2023), LSU AgCenter.
           Full Existing Conditions Report available in the Documents section.
         </p>
+        */}
 
       </div>
     </section>
