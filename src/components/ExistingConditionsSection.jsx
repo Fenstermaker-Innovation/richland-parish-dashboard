@@ -1,9 +1,9 @@
 const STATS = [
   { value: "8,849", label: "Housing Units", sub: "U.S. Census Bureau", year: "2025", icon: "🏘️" },
-  { value: "67%", label: "Owner Occupied", sub: "U.S. Census Bureau", year: "2024", icon: "🏡" },
-  { value: "41%", label: "Agricultural Land", sub: "LSU AgCenter", year: "2025", icon: "🌾" },
+  { value: "67%", label: "Owner Occupied Housing", sub: "U.S. Census Bureau", year: "2024", icon: "🏡" },
+  { value: "41%", label: "Of Parish is Agricultural Land", sub: "LSU AgCenter", year: "2025", icon: "🌾" },
   { value: "5.2%", label: "Unemployment Rate", sub: "U.S. Bureau of Labor Statistics", year: "2026", icon: "📊" },
-  { value: "1979", label: "Median Build Year", sub: "U.S. Census Bureau", year: "2024", icon: "🏗️" },
+  { value: "1979", label: "Median Build Yearof Housing", sub: "U.S. Census Bureau", year: "2024", icon: "🏗️" },
   { value: "$53,544", label: "Median Household Income", sub: "U.S. Census Bureau", year: "2024", icon: "💵" },
 ]
 
