@@ -3,14 +3,14 @@ const LEARN_CARDS = [
     label: "Master Plan",
     title: "A Roadmap for Our Parish",
     body:
-      "A Comprehensive Master Plan is a roadmap for our Parish growth and development. It's a strategic document that outlines our collective, community influenced vision for the future, guiding decisions on everything from land use to roads and other infrastructure, industry, parks, housing and more. A Comprehensive Master Plan allows communities like Richland Parish to be intentional about how they evolve over time, what they prioritize, and what they preserve.",
+      "A Comprehensive Master Plan is a strategic document that outlines our collective, community influenced vision for the future, guiding decisions on everything from land use to roads and other infrastructure, industry, parks, housing and more. A Comprehensive Master Plan allows communities like Richland Parish to be intentional about how they evolve over time, what they prioritize, and what they preserve.",
     icon: "🗺"
   },
   {
     label: "Development Code",
     title: "The Rules That Guide Growth",
     body:
-      "Development rules (like zoning) is a set of local regulations that guide how land and buildings are used and developed within a community. It establishes standards for development and helps promote orderly growth, reduce land use conflicts, protect property values, and support the community's long-term vision. Zoning does not dictate what property owners must build.",
+      "Development regulations guide how land and buildings are used and developed within a community. A Development Code also establishes standards for how land should be developed which helps promote orderly growth, reduces land use conflicts, protects property values, and supports the community's long-term vision. It is important to note that all uses of the land before the adoption of the development code will not be impacted. This iteration of the code only applies to development that occurs after its adoption.",
     icon: "📐"
   },
   {
@@ -32,7 +32,7 @@ export default function LearnSection() {
             Understanding the Plan
           </h2>
           <p className="font-sans text-forest/60 text-base max-w-xl mx-auto leading-relaxed">
-            Not sure what a Master Plan or Zoning Code is? You're in the right place.
+            Not sure what a Master Plan or Development Code is? You're in the right place.
           </p>
         </div>
 
