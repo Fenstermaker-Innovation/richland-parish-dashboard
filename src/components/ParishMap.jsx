@@ -135,26 +135,24 @@ export default function ParishMap({ className = "" }) {
     const zoom = new Zoom({ view })
     view.ui.add(zoom, "bottom-right")
 
-    view.when(() => {
-      parishLayer.load().then(() => {
-        const symbol = parishLayer.geometryType === "polygon" ? FILL_SYMBOL : LINE_SYMBOL
-        parishLayer.renderer = new SimpleRenderer({ symbol })
+view.goTo(paddedExtent, { duration: 0 }).then(() => {
+  const shiftedCenter = new Point({
+    longitude: view.center.longitude,
+    latitude: view.center.latitude - 0.02
+  })
 
-        parishLayer.queryExtent().then((result) => {
-          if (!result?.extent) return
-          
-          const paddedExtent = result.extent.expand(1.38)
-          paddedExtent.ymin += 0.035
-          paddedExtent.ymax += 0.035
-          
-          view.goTo(paddedExtent, { duration: 1200 }).then(() => {
-            view.constraints.geometry = paddedExtent.expand(3)
-            view.constraints.minScale = 750000
-            view.constraints.maxScale = 10000
-          })
-        })
-      })
-    })
+  view.goTo(
+    {
+      center: shiftedCenter,
+      scale: view.scale
+    },
+    { duration: 1200 }
+  ).then(() => {
+    view.constraints.geometry = paddedExtent.expand(3)
+    view.constraints.minScale = 750000
+    view.constraints.maxScale = 10000
+  })
+})
 
     return () => { view.destroy() }
   }, [])
