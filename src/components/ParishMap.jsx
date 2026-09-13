@@ -146,8 +146,8 @@ view.when(() => {
       const paddedExtent = result.extent.expand(1.38)
       const defaultExtent = paddedExtent.clone()
 
-      defaultExtent.ymin -= defaultExtent.height * 0.10
-      defaultExtent.ymax -= defaultExtent.height * 0.10
+      defaultExtent.ymin -= defaultExtent.height * 0.05
+      defaultExtent.ymax -= defaultExtent.height * 0.05
 
       view.goTo(defaultExtent, { duration: 1200 }).then(() => {
         view.constraints.geometry = paddedExtent.expand(3)
