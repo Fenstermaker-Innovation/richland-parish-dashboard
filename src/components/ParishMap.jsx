@@ -144,8 +144,8 @@ export default function ParishMap({ className = "" }) {
           if (!result?.extent) return
           
           const paddedExtent = result.extent.expand(1.38)
-          paddedExtent.ymin += 0.02
-          paddedExtent.ymax += 0.02
+          paddedExtent.ymin += 0.035
+          paddedExtent.ymax += 0.035
           
           view.goTo(paddedExtent, { duration: 1200 }).then(() => {
             view.constraints.geometry = paddedExtent.expand(3)
