@@ -2,7 +2,7 @@ import ParishMap from "./ParishMap.jsx"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col lg:flex-row">
+    <section className="relative min-h-screen flex flex-col lg:flex-row pt-[76px]">
       {/* Left panel — text */}
       <div className="relative z-10 flex flex-col justify-center px-10 py-32 lg:py-0 lg:w-5/12 lg:px-16 xl:px-24 bg-ivory">
         <p className="section-label mb-6">Rooted in Richland</p>
