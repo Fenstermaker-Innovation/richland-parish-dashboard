@@ -144,8 +144,13 @@ view.when(() => {
       if (!result?.extent) return
 
       const paddedExtent = result.extent.expand(1.38)
+      const defaultExtent = paddedExtent.clone()
+      const verticalShift = defaultExtent.height * 0.06
 
-      view.goTo(paddedExtent, { duration: 1200 }).then(() => {
+      defaultExtent.ymin -= verticalShift
+      defaultExtent.ymax -= verticalShift
+
+      view.goTo(defaultExtent, { duration: 1200 }).then(() => {
         view.constraints.geometry = paddedExtent.expand(3)
         view.constraints.minScale = 750000
         view.constraints.maxScale = 10000
