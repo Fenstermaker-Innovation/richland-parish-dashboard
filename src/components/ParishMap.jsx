@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+ximport { useRef, useEffect } from "react"
 import Map from "@arcgis/core/Map.js"
 import MapView from "@arcgis/core/views/MapView.js"
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js"
@@ -144,8 +144,8 @@ export default function ParishMap({ className = "" }) {
           if (!result?.extent) return
           const paddedExtent = result.extent.expand(1.5)
           view.goTo(paddedExtent, { duration: 1200 }).then(() => {
-            view.constraints.geometry = paddedExtent
-            view.constraints.minScale = view.scale * 1.05
+            view.constraints.geometry = paddedExtent.expand(3)
+            view.constraints.minScale = 750000
             view.constraints.maxScale = 10000
           })
         })
