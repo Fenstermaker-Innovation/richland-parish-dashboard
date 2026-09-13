@@ -39,10 +39,10 @@ const LINE_SYMBOL = new SimpleLineSymbol({ color: [29, 53, 33, 1], width: 3.5 })
 
 // Towns in Richland Parish
 const LANDMARKS = [
-  { name: "Rayville", lon: -91.75659, lat: 32.48466 },
-  { name: "Mangham",  lon: -91.77603, lat: 32.31637 },
-  { name: "Delhi",    lon: -91.49317, lat: 32.46514 },
-  { name: "Start",    lon: -91.85917, lat: 32.49389 },
+  { name: "Rayville", lon: -91.75659, lat: 32.48966 },
+  { name: "Mangham",  lon: -91.77603, lat: 32.32137 },
+  { name: "Delhi",    lon: -91.49317, lat: 32.47014 },
+  { name: "Start",    lon: -91.85917, lat: 32.49889 },
 ]
 
 // Water body label points — placed at midpoints of each waterway in the parish
@@ -142,7 +142,7 @@ export default function ParishMap({ className = "" }) {
 
         parishLayer.queryExtent().then((result) => {
           if (!result?.extent) return
-          const paddedExtent = result.extent.expand(1.4)
+          const paddedExtent = result.extent.expand(1.38)
           view.goTo(paddedExtent, { duration: 1200 }).then(() => {
             view.constraints.geometry = paddedExtent.expand(3)
             view.constraints.minScale = 750000
