@@ -4,41 +4,67 @@ import Graphic from "@arcgis/core/Graphic.js"
 import { STAY_ENGAGED_LAYER_URL } from "../config/surveys.js"
 
 const CONTACT_PREFS = [
-  { value: "email",  label: "Email" },
-  { value: "text",   label: "Text message" },
-  { value: "either", label: "Either is fine" },
+  { value: "Phone",   label: "Phone" },
+  { value: "Email",  label: "Email" },
+  { value: "Either One", label: "Either one" },
 ]
 
-const INTERESTS = [
-  { value: "economic",    label: "Jobs & economy" },
-  { value: "housing",     label: "Housing" },
-  { value: "roads",       label: "Roads & transportation" },
-  { value: "parks",       label: "Parks & recreation" },
-  { value: "zoning",      label: "Land use & zoning" },
-  { value: "agriculture", label: "Agriculture" },
-  { value: "downtown",    label: "Downtown development" },
-  { value: "youth",       label: "Youth & families" },
-  { value: "environment", label: "Environment" },
-  { value: "historic",    label: "Historic preservation" },
+const PHONE_ACCESS = [
+  { value: "Yes", label: "Yes" },
+  { value: "No, only phone", label: "No, only phone" },
 ]
 
-const MEETING_OPTS = [
-  { value: "yes",     label: "Yes, in person" },
-  { value: "virtual", label: "Yes, virtually" },
-  { value: "either",  label: "Either works" },
-  { value: "no",      label: "No, keep me updated online" },
+const CONNECTIONS = [
+  {
+    value: "I live and work in the parish",
+    label: "I live and work in the parish"
+  },
+  {
+    value: "I live in the parish",
+    label: "I live in the parish"
+  },
+  {
+    value: "I work in the parish",
+    label: "I work in the parish"
+  },
+  {
+    value: "I live in a nearby parish",
+    label: "I live in a nearby parish"
+  },
+  {
+    value: "I have family that lives in the",
+    label: "I have family that lives in the parish"
+  },
+  {
+    value: "I own a business or property in",
+    label: "I own a business or property in the Parish"
+  },
 ]
 
-const HOW_HEARD = [
-  { value: "social_media",  label: "Social media" },
-  { value: "friend_family", label: "Friend or family" },
-  { value: "newspaper",     label: "Newspaper / news outlet" },
-  { value: "flyer",         label: "Flyer or poster" },
-  { value: "email_list",    label: "Email or newsletter" },
-  { value: "parish_office", label: "Parish or city office" },
-  { value: "event",         label: "Community event" },
-  { value: "other",         label: "Other" },
+const CONTACT_ROLES = [
+  { value: "Yes, media", label: "Yes, media" },
+  { value: "Yes, elected official", label: "Yes, elected official" },
+  { value: "No", label: "No" },
 ]
+
+const RESIDENCY = [
+  { value: "Temporary", label: "Temporary" },
+  { value: "Permanent", label: "Permanent" },
+]
+
+const DISTRICTS = [
+  { value: "1 (Doug Craig)", label: "1 (Doug Craig)" },
+  { value: "2 (Billy Powell)", label: "2 (Billy Powell)" },
+  { value: "3 (John Gee)", label: "3 (John Gee)" },
+  { value: "4 (Steve Adcock)", label: "4 (Steve Adcock)" },
+  { value: "5 (Jesse Lively)", label: "5 (Jesse Lively)" },
+  { value: "6 (Johnny Jones)", label: "6 (Johnny Jones)" },
+  { value: "7 (Cecil Reddick)", label: "7 (Cecil Reddick)" },
+  { value: "8 (Elliot Colvin)", label: "8 (Elliot Colvin)" },
+  { value: "9 (Roy Wiggins Jr.)", label: "9 (Roy Wiggins Jr.)" },
+  { value: "I'm not sure", label: "I'm not sure" },
+]
+
 
 function RadioPills({ options, value, onChange }) {
   return (
@@ -61,6 +87,7 @@ function RadioPills({ options, value, onChange }) {
   )
 }
 
+/*
 function CheckPills({ options, selected, onChange }) {
   const toggle = (val) => {
     onChange(selected.includes(val) ? selected.filter(v => v !== val) : [...selected, val])
@@ -87,6 +114,7 @@ function CheckPills({ options, selected, onChange }) {
     </div>
   )
 }
+*/
 
 function InputField({ label, hint, required, children }) {
   return (
@@ -107,22 +135,24 @@ export default function StayEngagedForm() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(null)
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    contact_preference: "",
-    areas_of_interest: [],
-    meeting_interest: "",
-    meeting_availability: "",
-    how_heard: "",
-    additional_comments: "",
-  })
+const [form, setForm] = useState({
+  first_and_last_name: "",
+  phone_number: "",
+  email: "",
+  what_is_your_preferred_form_of: "",
+  if_you_said_you_prefer_phone_co: "",
+  tell_us_your_connection_to_rich: "",
+  are_you_a_media_contact_or_an_e: "",
+  are_you_a_temporary_resident_or: "",
+  if_you_live_in_or_own_property: "",
+})
 
   const set = (field, value) => setForm(prev => ({ ...prev, [field]: value }))
 
-  const isValid = form.first_name.trim() && form.last_name.trim() && form.email.trim()
+  const isValid =
+    form.first_and_last_name.trim() &&
+    form.phone_number.trim() &&
+    form.email.trim()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -133,16 +163,15 @@ export default function StayEngagedForm() {
       const layer = new FeatureLayer({ url: STAY_ENGAGED_LAYER_URL })
       const graphic = new Graphic({
         attributes: {
-          first_name:           form.first_name || null,
-          last_name:            form.last_name || null,
-          email:                form.email || null,
-          phone:                form.phone || null,
-          contact_preference:   form.contact_preference || null,
-          areas_of_interest:    form.areas_of_interest.join(" ") || null,
-          meeting_interest:     form.meeting_interest || null,
-          meeting_availability: form.meeting_availability || null,
-          how_heard:            form.how_heard || null,
-          additional_comments:  form.additional_comments || null,
+          first_and_last_name: form.first_and_last_name || null,
+          phone_number: form.phone_number || null,
+          email: form.email || null,
+          what_is_your_preferred_form_of:  form.what_is_your_preferred_form_of || null,
+          if_you_said_you_prefer_phone_co:  form.if_you_said_you_prefer_phone_co || null,
+          tell_us_your_connection_to_rich:  form.tell_us_your_connection_to_rich || null,
+          are_you_a_media_contact_or_an_e:  form.are_you_a_media_contact_or_an_e || null,
+          are_you_a_temporary_resident_or:  form.are_you_a_temporary_resident_or || null,
+          if_you_live_in_or_own_property:  form.if_you_live_in_or_own_property || null,
         },
       })
       const result = await layer.applyEdits({ addFeatures: [graphic] })
@@ -177,58 +206,88 @@ export default function StayEngagedForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto flex flex-col gap-10">
 
-      {/* Contact info */}
-      <div className="grid sm:grid-cols-2 gap-6">
-        <InputField label="First Name" required>
-          <input type="text" value={form.first_name} onChange={e => set("first_name", e.target.value)} className={inputCls} required />
-        </InputField>
-        <InputField label="Last Name" required>
-          <input type="text" value={form.last_name} onChange={e => set("last_name", e.target.value)} className={inputCls} required />
-        </InputField>
-        <InputField label="Email Address" required>
-          <input type="email" value={form.email} onChange={e => set("email", e.target.value)} className={inputCls} required />
-        </InputField>
-        <InputField label="Phone Number" hint="Optional — for text updates">
-          <input type="tel" value={form.phone} onChange={e => set("phone", e.target.value)} className={inputCls} />
-        </InputField>
-      </div>
+{/* Contact info */}
+<div className="grid sm:grid-cols-2 gap-6">
+  <InputField label="First and Last Name" required>
+    <input
+      type="text"
+      value={form.first_and_last_name}
+      onChange={e => set("first_and_last_name", e.target.value)}
+      className={inputCls}
+      required
+    />
+  </InputField>
 
-      {/* Contact preference */}
-      <InputField label="How do you prefer to be contacted?">
-        <RadioPills options={CONTACT_PREFS} value={form.contact_preference} onChange={v => set("contact_preference", v)} />
-      </InputField>
+  <InputField label="Phone Number" required>
+    <input
+      type="tel"
+      value={form.phone_number}
+      onChange={e => set("phone_number", e.target.value)}
+      className={inputCls}
+      required
+    />
+  </InputField>
 
-      {/* Interests */}
-      <InputField label="What topics are you most interested in?" hint="Select all that apply.">
-        <CheckPills options={INTERESTS} selected={form.areas_of_interest} onChange={v => set("areas_of_interest", v)} />
-      </InputField>
+  <InputField label="Email" required>
+    <input
+      type="email"
+      value={form.email}
+      onChange={e => set("email", e.target.value)}
+      className={inputCls}
+      required
+    />
+  </InputField>
+</div>
 
-      {/* Meetings */}
-      <InputField label="Would you like to attend public meetings or workshops?">
-        <RadioPills options={MEETING_OPTS} value={form.meeting_interest} onChange={v => set("meeting_interest", v)} />
-      </InputField>
+<InputField label="What is your preferred form of communication?">
+  <RadioPills
+    options={CONTACT_PREFS}
+    value={form.what_is_your_preferred_form_of}
+    onChange={v => set("what_is_your_preferred_form_of", v)}
+  />
+</InputField>
 
-      {(form.meeting_interest === "yes" || form.meeting_interest === "virtual" || form.meeting_interest === "either") && (
-        <InputField label="What times work best for you?" hint="e.g., weekday evenings, Saturday mornings">
-          <input type="text" value={form.meeting_availability} onChange={e => set("meeting_availability", e.target.value)} className={inputCls} placeholder="Weekday evenings..." />
-        </InputField>
-      )}
+{form.what_is_your_preferred_form_of === "Phone" && (
+  <InputField label="If you said you prefer phone communication, do you have access to email or Facebook?">
+    <RadioPills
+      options={PHONE_ACCESS}
+      value={form.if_you_said_you_prefer_phone_co}
+      onChange={v => set("if_you_said_you_prefer_phone_co", v)}
+    />
+  </InputField>
+)}
 
-      {/* How heard */}
-      <InputField label="How did you hear about this project?">
-        <RadioPills options={HOW_HEARD} value={form.how_heard} onChange={v => set("how_heard", v)} />
-      </InputField>
+<InputField label="Tell us your connection to Richland Parish">
+  <RadioPills
+    options={CONNECTIONS}
+    value={form.tell_us_your_connection_to_rich}
+    onChange={v => set("tell_us_your_connection_to_rich", v)}
+  />
+</InputField>
 
-      {/* Comments */}
-      <InputField label="Any questions or comments for the planning team?">
-        <textarea
-          value={form.additional_comments}
-          onChange={e => set("additional_comments", e.target.value)}
-          rows={3}
-          className="w-full border border-ivory/20 bg-ivory/10 focus:border-eucalyptus focus:outline-none px-4 py-3 font-sans text-sm text-ivory resize-none transition-colors placeholder:text-ivory/25"
-          placeholder="Optional..."
-        />
-      </InputField>
+<InputField label="Are you a media contact or an elected official?">
+  <RadioPills
+    options={CONTACT_ROLES}
+    value={form.are_you_a_media_contact_or_an_e}
+    onChange={v => set("are_you_a_media_contact_or_an_e", v)}
+  />
+</InputField>
+
+<InputField label="Are you a temporary resident or long-term permanent resident?" hint="Temporary = contract worker or relative of contract worker">
+  <RadioPills
+    options={RESIDENCY}
+    value={form.are_you_a_temporary_resident_or}
+    onChange={v => set("are_you_a_temporary_resident_or", v)}
+  />
+</InputField>
+
+<InputField label="If you live in or own property in Richland Parish, please tell us which district." hint="We've included the Police Jury member to help in case you're unsure.">
+  <RadioPills
+    options={DISTRICTS}
+    value={form.if_you_live_in_or_own_property}
+    onChange={v => set("if_you_live_in_or_own_property", v)}
+  />
+</InputField>
 
       {error && <p className="font-sans text-red-400 text-sm">{error}</p>}
 
