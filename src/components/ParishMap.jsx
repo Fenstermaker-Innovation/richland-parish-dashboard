@@ -1,4 +1,4 @@
-ximport { useRef, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import Map from "@arcgis/core/Map.js"
 import MapView from "@arcgis/core/views/MapView.js"
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js"
