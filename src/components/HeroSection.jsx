@@ -6,6 +6,8 @@ export default function HeroSection() {
       {/* Left panel — text */}
       <div className="relative z-10 flex flex-col justify-center px-10 py-32 lg:py-0 lg:w-5/12 lg:px-16 xl:px-24 bg-ivory">
        {/* <p className="section-label mb-6">Rooted in Richland</p> */}
+      {/* Rooted in Richland label hidden; spacer preserves logo position */}
+      <div className="h-5 mb-6" aria-hidden="true" />
 
         <div className="flex justify-start mb-8">
           <img
