@@ -14,7 +14,36 @@ import LiveResponsesSection from "./components/LiveResponsesSection.jsx"
 import Footer from "./components/Footer.jsx"
 import BottomBar from "./components/BottomBar.jsx"
 
+// ============================================================
+// TEMPORARY RICHLAND HOLD - ATTORNEY REVIEW - SEPTEMBER 2026
+// The normal website is preserved below.
+// Remove the temporary Coming Soon return and restore the
+// normal return after Richland approves the website for launch.
+// DO NOT confuse this hold with sections intentionally hidden
+// within the normal website.
+// ============================================================
+
 export default function App() {
+  return (
+    <div className="min-h-screen bg-ivory flex items-center justify-center px-6">
+      <div className="text-center">
+        <h1 className="font-serif text-forest text-5xl md:text-6xl mb-4">
+          Rooted in Richland
+        </h1>
+
+        <p className="font-serif italic text-gold text-2xl md:text-3xl">
+          Website Coming Soon!
+        </p>
+      </div>
+    </div>
+  )
+
+
+  /*
+  ============================================================
+  NORMAL WEBSITE - TEMPORARILY DISABLED FOR ATTORNEY REVIEW
+  ============================================================
+
   return (
     <div className="min-h-screen pb-14">
       <Header />
@@ -36,4 +65,5 @@ export default function App() {
       <BottomBar />
     </div>
   )
+  */
 }
