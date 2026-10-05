@@ -4,9 +4,9 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Timeline", href: "#timeline" },
   { label: "Community Voice", href: "#community-voice" },
-  { label: "Events", href: "#events" },
-  { label: "Documents", href: "#documents" },
+  // { label: "Documents", href: "#documents" },
   { label: "Get Involved", href: "#stay-engaged" },
+  { label: "Events", href: "#events" },
 ]
 
 function TranslateWidget() {
@@ -52,15 +52,15 @@ export default function Header() {
       <div className="w-full px-6 py-4 flex items-center justify-between gap-6">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
-          <div className="overflow-hidden h-[45px] flex-shrink-0">
+          <div className="h-[50px] flex items-center flex-shrink-0">
             <img
-              src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+              src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
               alt="Rooted in Richland"
-              className="h-16 w-auto -mt-[9.5px]"
+              className="h-16 w-16 rounded-full object-cover mb-3"
             />
           </div>
           <span className="font-sans text-eucalyptus text-xs tracking-wide leading-snug hidden sm:block">
-            Master Plan &amp;<br />Zoning Code Update
+            Master Plan &amp;<br />Development Code Update
           </span>
         </a>
 
@@ -70,7 +70,7 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-sans text-sm text-ivory/60 hover:text-ivory tracking-wide transition-colors duration-150 whitespace-nowrap"
+              className="font-sans text-sm text-ivory hover:text-ivory tracking-wide transition-colors duration-150 whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -80,7 +80,7 @@ export default function Header() {
         {/* Right: translate + CTA */}
         <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
           <TranslateWidget />
-          <a href="#community-voice" className="btn-primary text-xs whitespace-nowrap">
+          <a href="#community-voice" className="btn-header text-xs whitespace-nowrap">
             Share Your Voice
           </a>
         </div>
@@ -104,13 +104,13 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-sans text-sm text-ivory/60 hover:text-ivory tracking-wide"
+              className="font-sans text-sm text-ivory hover:text-ivory tracking-wide"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </a>
           ))}
-          <a href="#community-voice" className="btn-primary text-center text-xs mt-2" onClick={() => setMenuOpen(false)}>
+          <a href="#community-voice" className="btn-header text-center text-xs mt-2" onClick={() => setMenuOpen(false)}>
             Share Your Voice
           </a>
           <div className="pt-2 border-t border-eucalyptus/20">

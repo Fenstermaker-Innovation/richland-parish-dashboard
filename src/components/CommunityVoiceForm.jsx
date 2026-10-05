@@ -75,8 +75,8 @@ function RadioGroup({ options, value, onChange }) {
           onClick={() => onChange(opt.value)}
           className={`text-left px-4 py-3 border text-sm font-sans transition-colors duration-150 ${
             value === opt.value
-              ? "border-sage bg-sage/10 text-forest font-medium"
-              : "border-sand bg-white text-forest/70 hover:border-eucalyptus"
+              ? "border-2 border-brown bg-sage/10 text-forest font-medium"
+              : "border-forest bg-white text-forest hover:border-brown hover:font-semibold"
           }`}
         >
           {opt.label}
@@ -110,7 +110,7 @@ function PillGroup({ options, selected, onChange, max }) {
                 ? "bg-sage border-sage text-ivory"
                 : disabled
                 ? "border-sand text-forest/25 cursor-not-allowed"
-                : "border-eucalyptus/60 text-forest hover:border-sage"
+                : "border-forest text-forest hover:border-brown hover:font-semibold"
             }`}
           >
             {opt.label}
@@ -125,9 +125,9 @@ function Field({ label, hint, required, children }) {
   return (
     <div className="flex flex-col gap-2">
       <label className="font-serif text-forest text-lg font-semibold leading-snug">
-        {label}{required && <span className="text-sage ml-1">*</span>}
+        {label}{required && <span className="text-brown ml-1">*</span>}
       </label>
-      {hint && <p className="font-sans text-forest/45 text-xs leading-relaxed">{hint}</p>}
+      {hint && <p className="font-sans text-forest/90 text-xs leading-relaxed">{hint}</p>}
       {children}
     </div>
   )
@@ -141,7 +141,7 @@ function StyledTextarea({ value, onChange, placeholder, required }) {
       placeholder={placeholder}
       rows={4}
       required={required}
-      className="w-full border border-sand bg-white focus:border-sage focus:outline-none px-4 py-3 font-sans text-sm text-forest resize-none transition-colors placeholder:text-forest/25"
+      className="w-full border border-forest bg-white focus:border-brown focus:ring-2 focus:ring-brown focus:outline-none px-4 py-3 font-sans text-sm text-forest resize-none transition-colors placeholder:text-forest/85"
     />
   )
 }
@@ -153,7 +153,7 @@ function ProgressBar({ step, total }) {
         <div
           key={i}
           className={`h-0.5 flex-1 transition-all duration-500 ${
-            i < step ? "bg-sage" : i === step ? "bg-eucalyptus" : "bg-sand"
+            i < step ? "bg-brown" : i === step ? "bg-forest" : "bg-sand"
           }`}
         />
       ))}
@@ -244,7 +244,7 @@ export default function CommunityVoiceForm() {
     <div className="max-w-2xl mx-auto">
       <ProgressBar step={step} total={STEPS.length} />
 
-      <p className="section-label mb-6">Step {step + 1} of {STEPS.length} — {STEPS[step]}</p>
+      <p className="section-label text-brown mb-6">Step {step + 1} of {STEPS.length} — {STEPS[step]}</p>
 
       <div className="flex flex-col gap-8">
         {step === 0 && (
@@ -269,7 +269,7 @@ export default function CommunityVoiceForm() {
                 value={form.word_other}
                 onChange={e => set("word_other", e.target.value)}
                 placeholder="Type your own words..."
-                className="w-full border border-sand bg-white focus:border-sage focus:outline-none px-4 py-3 font-sans text-sm text-forest transition-colors placeholder:text-forest/25"
+                className="w-full border border-forest bg-white focus:border-brown focus:ring-2 focus:ring-brown focus:outline-none px-4 py-3 font-sans text-sm text-forest transition-colors placeholder:text-forest/85"
               />
             </Field>
           </>

@@ -1,38 +1,37 @@
 export default function Footer() {
   return (
-    <footer className="text-ivory/50 py-12 px-6" style={{ backgroundColor: "#1D3521" }}>
+    <footer className="text-ivory/95 py-12 px-6" style={{ backgroundColor: "#1D3521" }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
 
         {/* Branding */}
         <div className="flex flex-col items-center md:items-start">
           <img
-            src={`${import.meta.env.BASE_URL}images/logos/wordmark.png`}
+            src={`${import.meta.env.BASE_URL}images/logos/primary.png`}
             alt="Rooted in Richland"
-            className="h-14 w-auto mb-3"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className="h-16 w-16 rounded-full object-cover mb-3"
           />
-          <p className="font-sans text-xs text-ivory/30">Master Plan &amp; Zoning Code Update</p>
-          <p className="font-sans text-xs mt-6 text-ivory/20">
+          <p className="font-sans text-xs text-ivory/95">Master Plan &amp; Development Code Update</p>
+          <p className="font-sans text-xs mt-6 text-ivory/95">
             &copy; {new Date().getFullYear()} Richland Parish
           </p>
         </div>
 
         {/* Nav */}
         <nav className="flex flex-col items-center md:items-start gap-3">
-          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/30 mb-1">Sections</p>
+          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory mb-1">Sections</p>
           {[
             { label: "About",           href: "#about" },
             { label: "Timeline",        href: "#timeline" },
             { label: "Community Voice", href: "#community-voice" },
             { label: "Events",          href: "#events" },
-            { label: "Documents",       href: "#documents" },
-            { label: "Interactive Map", href: "#interactive-map" },
-            { label: "Live Responses",  href: "#live-responses" },
+            // { label: "Documents",       href: "#documents" },
+            // { label: "Interactive Map", href: "#interactive-map" },
+            // { label: "Live Responses",  href: "#live-responses" },
           ].map(({ label, href }) => (
             <a
               key={href}
               href={href}
-              className="font-sans text-xs tracking-wide hover:text-ivory/80 transition-colors"
+              className="font-sans text-xs tracking-wide text-ivory/95 hover:text-sage transition-colors"
             >
               {label}
             </a>
@@ -41,25 +40,25 @@ export default function Footer() {
 
         {/* Contact */}
         <div className="flex flex-col items-center md:items-start">
-          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/30 mb-3">Contact</p>
-          <p className="font-sans text-xs text-ivory/40 mb-3 leading-relaxed">
+          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/95 mb-3">Contact</p>
+          <p className="font-sans text-xs text-ivory/95 mb-3 leading-relaxed">
             For all your contact needs please contact:
           </p>
           <p className="font-serif text-ivory text-sm font-semibold leading-snug">
-            Anna Wyble Doucet
+            <span className="text-ivory">Wade Hamilton</span>
+            <span className="font-sans text-xs text-eucalyptus">, P.E.</span>
           </p>
-          <p className="font-sans text-xs text-eucalyptus mt-0.5">DOFAT, MBA, P.E.</p>
-          <p className="font-sans text-xs text-ivory/50 mt-1">Engineer Manager</p>
+          <p className="font-sans text-xs text-ivory/95 mt-1">Engineer</p>
           <a
-            href="mailto:anna@fenstermaker.com"
-            className="font-sans text-xs text-sage hover:text-ivory transition-colors mt-3"
+            href="mailto:whamilton@fenstermaker.com"
+            className="font-sans text-xs text-sage underline hover:text-ivory transition-colors mt-3"
           >
-            anna@fenstermaker.com
+            whamilton@fenstermaker.com
           </a>
-          <div className="font-sans text-xs text-ivory/50 mt-1.5 flex items-center gap-2">
-            <span>337.237.2200</span>
-            <span className="text-ivory/20">·</span>
-            <span>x1272</span>
+          <div className="font-sans text-xs text-ivory/95 mt-1.5 flex items-center gap-2">
+            <span>225.344.6701</span>
+            <span className="text-ivory/95">·</span>
+            <span>x1527</span>
           </div>
         </div>
 

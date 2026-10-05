@@ -16,6 +16,7 @@ import Zoom from "@arcgis/core/widgets/Zoom.js"
 import { PARISH_BOUNDARY_URL } from "../config/esri.js"
 
 // CartoDB Positron — clean light basemap with streets, no API key required
+/*
 const basemap = new Basemap({
   baseLayers: [
     new WebTileLayer({
@@ -27,6 +28,7 @@ const basemap = new Basemap({
   title: "Light",
   id: "light"
 })
+*/
 
 const FILL_SYMBOL = new SimpleFillSymbol({
   color: [53, 94, 59, 0.22],
@@ -35,16 +37,12 @@ const FILL_SYMBOL = new SimpleFillSymbol({
 
 const LINE_SYMBOL = new SimpleLineSymbol({ color: [29, 53, 33, 1], width: 3.5 })
 
-// Historic landmarks in Richland Parish
+// Towns in Richland Parish
 const LANDMARKS = [
-  { name: "Richland Parish Courthouse", lon: -91.7554, lat: 32.4817 },
-  { name: "Delhi Historic District",    lon: -91.4898, lat: 32.4579 },
-  { name: "Mangham Town Hall",          lon: -91.7793, lat: 32.2995 },
-  { name: "Holly Ridge Community",      lon: -91.7440, lat: 32.2287 },
-  { name: "Archibald Historic Site",    lon: -91.7204, lat: 32.5126 },
-  { name: "Girard Historic District",   lon: -91.6525, lat: 32.5357 },
-  { name: "Start Community",            lon: -91.8434, lat: 32.3115 },
-  { name: "Boeuf River Ferry Site",     lon: -91.8050, lat: 32.3850 },
+  { name: "Rayville", lon: -91.75659, lat: 32.48816 },
+  { name: "Mangham",  lon: -91.77603, lat: 32.31987 },
+  { name: "Delhi",    lon: -91.49317, lat: 32.46864 },
+  { name: "Start",    lon: -91.85917, lat: 32.49739 },
 ]
 
 // Water body label points — placed at midpoints of each waterway in the parish
@@ -109,7 +107,7 @@ export default function ParishMap({ className = "" }) {
       url: "https://services9.arcgis.com/QClEuaPkoZwU6r3B/arcgis/rest/services/Richland_Main_Channels/FeatureServer/0",
       popupEnabled: false,
       renderer: new SimpleRenderer({
-        symbol: new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 2.5 })
+        symbol: new SimpleLineSymbol({ color: [65, 130, 185, 0.9], width: 1.5 })
       })
     })
 
@@ -121,7 +119,7 @@ export default function ParishMap({ className = "" }) {
     })
 
     const map = new Map({
-      basemap,
+      basemap: "gray-vector",
       layers: [parishLayer, channelLayer, landmarkLayer]
     })
 
@@ -137,22 +135,28 @@ export default function ParishMap({ className = "" }) {
     const zoom = new Zoom({ view })
     view.ui.add(zoom, "bottom-right")
 
-    view.when(() => {
-      parishLayer.load().then(() => {
-        const symbol = parishLayer.geometryType === "polygon" ? FILL_SYMBOL : LINE_SYMBOL
-        parishLayer.renderer = new SimpleRenderer({ symbol })
+view.when(() => {
+  parishLayer.load().then(() => {
+    const symbol = parishLayer.geometryType === "polygon" ? FILL_SYMBOL : LINE_SYMBOL
+    parishLayer.renderer = new SimpleRenderer({ symbol })
 
-        parishLayer.queryExtent().then((result) => {
-          if (!result?.extent) return
-          const paddedExtent = result.extent.expand(1.35)
-          view.goTo(paddedExtent, { duration: 1200 }).then(() => {
-            view.constraints.geometry = paddedExtent
-            view.constraints.minScale = view.scale * 1.05
-            view.constraints.maxScale = 10000
-          })
-        })
+    parishLayer.queryExtent().then((result) => {
+      if (!result?.extent) return
+
+      const paddedExtent = result.extent.expand(1.38)
+      const defaultExtent = paddedExtent.clone()
+
+      defaultExtent.ymin -= defaultExtent.height * 0.05
+      defaultExtent.ymax -= defaultExtent.height * 0.05
+
+      view.goTo(defaultExtent, { duration: 1200 }).then(() => {
+        view.constraints.geometry = paddedExtent.expand(3)
+        view.constraints.minScale = 750000
+        view.constraints.maxScale = 10000
       })
     })
+  })
+})
 
     return () => { view.destroy() }
   }, [])

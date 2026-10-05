@@ -14,6 +14,8 @@ import LiveResponsesSection from "./components/LiveResponsesSection.jsx"
 import Footer from "./components/Footer.jsx"
 import BottomBar from "./components/BottomBar.jsx"
 
+
+
 export default function App() {
   return (
     <div className="min-h-screen pb-14">
@@ -25,12 +27,16 @@ export default function App() {
         <CommunityVoiceSection />
         <LearnSection />
         <ExistingConditionsSection />
-        <LandUseSection />
-        <DocumentsSection />
+
+        {/* LandUseSection intentionally hidden */}
+        {/* DocumentsSection intentionally hidden */}
+
         <StayEngagedSection />
         <EventsSection />
-        <InteractiveMapSection />
-        <LiveResponsesSection />
+
+        {/* InteractiveMapSection intentionally hidden */}
+        {/* LiveResponsesSection intentionally hidden */}
+
       </main>
       <Footer />
       <BottomBar />

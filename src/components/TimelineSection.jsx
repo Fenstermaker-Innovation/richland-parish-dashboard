@@ -3,21 +3,21 @@ import { useState } from "react"
 const MILESTONES = [
   {
     phase: "Step 1",
-    title: "Listen & Learn",
-    status: "active",
+    title: "Learn",
+    status: "complete",
     description: "Gather data, trends & existing conditions. This is where we build the factual foundation for everything that follows — understanding who lives here, how land is used today, and what challenges and opportunities the parish faces.",
     bullets: [
       "Collect and analyze demographic, housing, and economic data",
       "Inventory existing land use and infrastructure conditions",
-      "Review current Master Plan and Zoning Code",
+      "Review current Development Code",
       "Identify key trends and issues facing the parish",
       "Establish baseline for all future planning decisions",
     ]
   },
   {
     phase: "Step 2",
-    title: "Share Vision",
-    status: "upcoming",
+    title: "Crafting the Vision",
+    status: "active",
     description: "Hear from residents, businesses & stakeholders. Your voice shapes the direction of the plan. We're gathering community input through public meetings, surveys, focus groups, and outreach events across the parish.",
     bullets: [
       "Public kickoff meetings and open houses",
@@ -42,7 +42,7 @@ const MILESTONES = [
   },
   {
     phase: "Step 4",
-    title: "Action Plan",
+    title: "Taking Action",
     status: "upcoming",
     description: "Prioritize projects, policies, and investments. The Action Plan turns strategies into a realistic implementation roadmap — identifying what gets done, by whom, and in what order, with a future land use map to guide development decisions.",
     bullets: [
@@ -59,8 +59,8 @@ const MILESTONES = [
     status: "upcoming",
     description: "Present the draft plan and gather final feedback. The complete draft Master Plan and Development Code are released for public review, followed by formal public hearings and adoption by the Richland Parish Police Jury.",
     bullets: [
-      "Draft Master Plan released for 60-day public comment",
-      "Draft Development Code released for review",
+      "Draft Master Plan released for public comment",
+      "Draft Development Code to be presented to Police Jury",
       "Public hearings before the Planning Commission",
       "Final revisions based on public comment",
       "Formal adoption by the Richland Parish Police Jury",
@@ -70,13 +70,11 @@ const MILESTONES = [
     phase: "Step 6",
     title: "Implementation",
     status: "upcoming",
-    description: "Put the plan into action & monitor results. Adoption is the beginning, not the end. The Implementation phase puts the plan to work — tracking progress, making updates as conditions change, and ensuring the community's vision becomes reality.",
+    description: "Put the plan into action & monitor results. Adoption is the beginning, not the end.",
     bullets: [
-      "Integrate Master Plan policies into day-to-day decisions",
-      "Pursue funding and grants for priority projects",
-      "Track progress against goals and benchmarks",
-      "Annual review and reporting to Police Jury",
-      "Update plan as needed to reflect changing conditions",
+      "Develop an implementation plan for the Master Plan",
+      "Designate roles and responsibilities for implementing the actions of the master plan",
+      "Work with the Parish to establish a government structure that is successfully able to enforce the development code",
     ]
   },
 ]
@@ -85,21 +83,21 @@ const STATUS = {
   complete: {
     dot: "bg-sage border-sage text-forest",
     ring: "ring-sage/40",
-    badge: "bg-sage/15 text-sage border-sage/30",
+    badge: "bg-sage/15 text-brown border-brown",
     label: "Completed",
     title: "text-forest",
   },
   active: {
     dot: "bg-eucalyptus border-eucalyptus text-forest",
-    ring: "ring-eucalyptus/40",
-    badge: "bg-eucalyptus/15 text-eucalyptus border-eucalyptus/30",
+    ring: "ring-eucalyptus",
+    badge: "bg-eucalyptus/15 text-forest border-forest",
     label: "We Are Here",
     title: "text-forest",
   },
   upcoming: {
-    dot: "bg-sand border-sand/60 text-forest/40",
+    dot: "bg-sand border-sand/60 text-forest",
     ring: "ring-sand/30",
-    badge: "bg-sand/30 text-forest/40 border-sand/40",
+    badge: "bg-sand/30 text-forest border-sand",
     label: "Upcoming",
     title: "text-forest",
   },
@@ -125,11 +123,11 @@ export default function TimelineSection() {
       <div className="max-w-5xl mx-auto">
 
         <div className="text-center mb-16">
-          <p className="section-label text-forest">Planning Process</p>
+          <p className="section-label text-brown">Planning Process</p>
           <h2 className="font-serif text-forest text-4xl lg:text-5xl font-semibold mb-5">
             We Are Just Getting Started
           </h2>
-          <p className="font-sans text-forest/55 text-base max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans text-forest text-base max-w-xl mx-auto leading-relaxed">
             We will be looking for your voice, input, and vision to help develop the Master Plan.
             Select a step to learn more.
           </p>
@@ -162,7 +160,9 @@ export default function TimelineSection() {
                     aria-label={`${m.phase}: ${m.title}`}
                   >
                     {/* Phase label */}
-                    <span className="font-sans text-[10px] tracking-widest uppercase text-forest/35 h-4 flex items-center">
+                    <span className={`font-sans text-[10px] tracking-widest uppercase text-forest h-4 flex items-center ${
+                       isSelected ? "font-semibold" : ""
+                    }`}>
                       {m.phase}
                     </span>
 
@@ -178,7 +178,7 @@ export default function TimelineSection() {
                         </svg>
                       )}
                       {m.status === "active" && (
-                        <span className="w-2.5 h-2.5 rounded-full bg-forest/70 animate-pulse" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-forest animate-pulse" />
                       )}
                       {m.status === "upcoming" && (
                         <span className="font-sans text-xs font-semibold">{i + 1}</span>
@@ -188,7 +188,7 @@ export default function TimelineSection() {
                     {/* Title */}
                     <span className={`
                       font-sans text-[11px] text-center leading-snug transition-colors px-1
-                      ${isSelected ? "text-forest font-semibold" : "text-forest/45 group-hover:text-forest/70"}
+                     ${isSelected ? "text-forest font-semibold" : "text-forest/85 group-hover:text-forest"}
                     `}>
                       {m.title}
                     </span>
@@ -205,7 +205,7 @@ export default function TimelineSection() {
             <div className="border border-sand bg-white p-8 md:p-10">
               <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                 <div>
-                  <p className="font-sans text-[10px] tracking-widest uppercase text-forest/35 mb-1">
+                  <p className="font-sans text-[10px] tracking-widest uppercase text-brown mb-1">
                     {current.phase}
                   </p>
                   <h3 className={`font-serif text-2xl font-semibold ${s.title}`}>
@@ -219,7 +219,7 @@ export default function TimelineSection() {
                   <button
                     onClick={() => setSelected(null)}
                     aria-label="Close"
-                    className="w-7 h-7 flex items-center justify-center text-forest/30 hover:text-forest/70 transition-colors"
+                    className="w-7 h-7 flex items-center justify-center text-forest/85 hover:text-forest transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -228,15 +228,15 @@ export default function TimelineSection() {
                 </div>
               </div>
 
-              <p className="font-sans text-forest/65 text-sm leading-relaxed mb-6">
+              <p className="font-sans text-forest/95 text-sm leading-relaxed mb-6">
                 {current.description}
               </p>
 
               <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
                 {current.bullets.map((b, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage/60 flex-shrink-0" />
-                    <span className="font-sans text-forest/60 text-sm">{b}</span>
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage flex-shrink-0" />
+                    <span className="font-sans text-forest/85 text-sm">{b}</span>
                   </li>
                 ))}
               </ul>
@@ -244,7 +244,7 @@ export default function TimelineSection() {
           )}
         </div>
 
-        <p className="font-sans text-forest/30 text-xs text-center mt-10">
+        <p className="font-sans text-forest/95 text-xs text-center mt-10">
           Community input will be a key component throughout the life of the planning process.
         </p>
 
