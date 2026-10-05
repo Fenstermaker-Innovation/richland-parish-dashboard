@@ -1,6 +1,6 @@
 export default function BottomBar() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-forest/96 backdrop-blur-sm border-t border-eucalyptus/25">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-bark border-t border-eucalyptus/25">
       <div className="flex items-center justify-center gap-5 py-2.5 px-6">
         <div className="flex-1 flex items-center gap-2 justify-end max-w-xs">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent to-sage/40" />

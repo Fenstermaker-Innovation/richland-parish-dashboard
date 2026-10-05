@@ -23,13 +23,17 @@
     @apply text-xs font-sans font-semibold tracking-widest uppercase text-eucalyptus mb-3;
   }
 
-  .btn-primary {
-    @apply inline-block bg-sage text-ivory font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-forest transition-colors duration-200;
-  }
+.btn-header {
+  @apply inline-block bg-ivory text-forest font-sans font-medium text-sm tracking-wide px-8 py-3 border border-ivory hover:bg-sand hover:border-sand transition-colors duration-200;
+}
+  
+ .btn-primary {
+  @apply inline-block bg-forest text-ivory font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-bark transition-colors duration-200;
+}
 
-  .btn-outline {
-    @apply inline-block border border-sage text-sage font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-sage hover:text-ivory transition-colors duration-200;
-  }
+.btn-outline {
+  @apply inline-block border border-forest text-forest font-sans font-medium text-sm tracking-wide px-8 py-3 hover:bg-forest hover:text-ivory transition-colors duration-200;
+}
 
   .esri-widget {
     font-family: 'Inter', system-ui, sans-serif !important;

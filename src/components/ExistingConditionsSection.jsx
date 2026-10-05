@@ -46,11 +46,11 @@ export default function ExistingConditionsSection() {
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-16">
-          <p className="section-label text-sage">Where We Stand</p>
+          <p className="section-label text-eucalyptus">Where We Stand</p>
           <h2 className="font-serif text-ivory text-4xl lg:text-5xl font-semibold mb-5">
             Existing Conditions
           </h2>
-          <p className="font-sans text-ivory/60 text-base max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans text-ivory text-base max-w-xl mx-auto leading-relaxed">
             Understanding where we are today is the foundation for planning where we want to go.
             These figures reflect the most recent available data for Richland Parish.
           </p>
@@ -62,8 +62,8 @@ export default function ExistingConditionsSection() {
             <div key={s.label} className="bg-ivory/5 border border-ivory/10 p-6 flex flex-col gap-2">
               <span className="text-2xl">{s.icon}</span>
               <p className="font-serif text-ivory text-3xl font-semibold mt-1">{s.value}</p>
-              <p className="font-sans text-ivory/80 text-sm font-medium">{s.label}</p>
-              <p className="font-sans text-ivory/35 text-xs">
+              <p className="font-sans text-sand text-sm font-medium">{s.label}</p>
+              <p className="font-sans text-ivory text-xs">
                 {s.sub} · <span className="italic">{s.year}</span>
               </p>
             </div>
@@ -79,7 +79,7 @@ export default function ExistingConditionsSection() {
                 {topic.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-1.5 w-1 h-1 rounded-full bg-sage/60 flex-shrink-0" />
-                    <p className="font-sans text-ivory/60 text-sm leading-relaxed">{item}</p>
+                    <p className="font-sans text-ivory text-sm leading-relaxed">{item}</p>
                   </li>
                 ))}
               </ul>

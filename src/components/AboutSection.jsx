@@ -85,14 +85,14 @@ export default function AboutSection() {
             alt="Rooted in Richland"
             className="w-40 h-40 mx-auto mb-8 rounded-full"
           />
-          <p className="section-label text-sage">About the Plan</p>
+          <p className="section-label text-eucalyptus">About the Plan</p>
           <h2 className="font-serif text-ivory text-4xl lg:text-5xl font-semibold mb-4">
             Project Background
           </h2>
           <p className="font-serif text-eucalyptus text-xl italic mb-6">
             Strong Roots, Smart Growth.
           </p>
-          <p className="font-sans text-ivory/60 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="font-sans text-ivory text-base max-w-2xl mx-auto leading-relaxed">
             Richland Parish is developing a Master Plan and updating its Development Code. 
             This project is your community&rsquo;s opportunity to shape the policies,
             priorities, and land-use rules that will guide the parish through 2045 and beyond.
@@ -100,20 +100,20 @@ export default function AboutSection() {
         </div>
 
         {/* Background text */}
-        <div className="border-l-2 border-sage/40 pl-8 mb-16 max-w-3xl mx-auto">
-          <p className="font-sans text-xs text-sage tracking-widest uppercase mb-4">Background</p>
-          <p className="font-sans text-ivory/75 text-sm leading-relaxed mb-5">
+        <div className="border-l-2 border-eucalyptus pl-8 mb-16 max-w-3xl mx-auto">
+          <p className="font-sans text-xs text-eucalyptus tracking-widest uppercase mb-4">Background</p>
+          <p className="font-sans text-ivory text-sm leading-relaxed mb-5">
             A Master Plan is a long-term planning document that sets a shared vision for land
             use, transportation, housing, economic development, natural resources, and public
             services. The Development Code is the legal tool that carries that vision into daily
             decisions — what gets built, where, and how.
           </p>
-          <p className="font-sans text-ivory/75 text-sm leading-relaxed mb-5">
+          <p className="font-sans text-ivory text-sm leading-relaxed mb-5">
             Richland Parish has experienced changes in agriculture, infrastructure, demographics, and
             economic opportunity. This plan addresses those shifts head-on, grounded in
             data and driven by the people who call this parish home.
           </p>
-          <p className="font-sans text-ivory/75 text-sm leading-relaxed">
+          <p className="font-sans text-ivory text-sm leading-relaxed">
             The planning process is guided by Parish leadership, key stakeholders, and yourself! 
             All major deliverables will be put in front of the community for public comment and the
             plan will be guided by input from public meetings and surveys.
@@ -149,7 +149,7 @@ export default function AboutSection() {
               className="w-80 opacity-75"
             />
           </div>
-          <p className="font-sans text-xs text-sage tracking-widest uppercase text-center mb-10">
+          <p className="font-sans text-xs text-eucalyptus tracking-widest uppercase text-center mb-10">
             Guiding Principles
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,7 +157,7 @@ export default function AboutSection() {
               <div key={p.title} className="bg-ivory/5 border border-ivory/10 p-6 flex flex-col gap-4">
                 <div className="text-sage">{p.icon}</div>
                 <h3 className="font-serif text-ivory text-lg font-semibold">{p.title}</h3>
-                <p className="font-sans text-ivory/55 text-sm leading-relaxed">{p.body}</p>
+                <p className="font-sans text-ivory text-sm leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>

@@ -76,8 +76,8 @@ function RadioPills({ options, value, onChange }) {
           onClick={() => onChange(opt.value)}
           className={`px-4 py-2 text-sm font-sans border transition-colors duration-150 ${
             value === opt.value
-              ? "bg-sage border-sage text-ivory"
-              : "border-ivory/30 text-ivory hover:border-eucalyptus"
+                ? "bg-ivory border-ivory text-forest"
+                : "border-ivory text-ivory hover:bg-ivory/10"
           }`}
         >
           {opt.label}
@@ -122,13 +122,13 @@ function InputField({ label, hint, required, children }) {
       <label className="font-sans text-sm font-medium text-ivory tracking-wide">
         {label}{required && <span className="text-eucalyptus ml-1">*</span>}
       </label>
-      {hint && <p className="font-sans text-ivory/55 text-xs">{hint}</p>}
+      {hint && <p className="font-sans text-ivory/95 text-xs">{hint}</p>}
       {children}
     </div>
   )
 }
 
-const inputCls = "w-full border border-ivory/20 bg-ivory/10 focus:border-eucalyptus focus:outline-none px-4 py-3 font-sans text-sm text-ivory transition-colors placeholder:text-ivory/30"
+const inputCls = "w-full border border-ivory bg-ivory/10 focus:border-eucalyptus focus:outline-none px-4 py-3 font-sans text-sm text-ivory transition-colors placeholder:text-ivory/30"
 
 export default function StayEngagedForm() {
   const [submitting, setSubmitting] = useState(false)
@@ -291,19 +291,21 @@ const [form, setForm] = useState({
 
       {error && <p className="font-sans text-red-400 text-sm">{error}</p>}
 
-      <div className="flex justify-end">
-        <button
-          type="submit"
-          disabled={submitting || !isValid}
-          className={`btn-primary text-xs bg-ivory text-forest hover:bg-sand border-ivory hover:border-sand ${
-            submitting || !isValid ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {submitting ? "Submitting…" : "Sign Me Up"}
-        </button>
-      </div>
+<div className="flex justify-end">
+  <button
+    type="submit"
+    disabled={submitting || !isValid}
+    className={`btn-primary text-xs ${
+      submitting || !isValid
+        ? "bg-transparent text-ivory border border-sand cursor-not-allowed"
+        : "bg-ivory text-forest border border-ivory hover:bg-sand hover:border-sand"
+    }`}
+  >
+    {submitting ? "Submitting…" : "Sign Me Up"}
+  </button>
+</div>
 
-      <p className="font-sans text-ivory/25 text-xs text-center -mt-4">
+      <p className="font-sans text-ivory/95 text-xs text-center -mt-4">
         Your information will never be shared with third parties.
       </p>
     </form>

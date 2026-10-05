@@ -19,14 +19,14 @@ export default function HeroSection() {
 
         <h1 className="font-serif text-forest leading-tight mb-3" style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}>
           Strong Roots,
-          <span className="block text-sage">Smart Growth.</span>
+          <span className="block text-brown">Smart Growth.</span>
         </h1>
 
-        <p className="font-sans text-forest/50 text-xs tracking-widest uppercase mb-6">
+        <p className="font-sans text-forest text-xs tracking-widest uppercase mb-6">
           Planning Today for a Stronger Tomorrow
         </p>
 
-        <p className="font-sans text-forest/60 text-base leading-relaxed mb-10 max-w-md">
+        <p className="font-sans text-forest text-base leading-relaxed mb-10 max-w-md">
           This land has always defined us. Now we're writing the plan that defines its future —
           honoring the agriculture, heritage, and character that make Richland Parish home,
           while intentionally shaping what comes next.
@@ -45,15 +45,15 @@ export default function HeroSection() {
         <div className="mt-16 pt-8 border-t border-sand flex gap-10">
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">2026</p>
-            <p className="font-sans text-xs text-forest/50 tracking-wide uppercase mt-1">Planning Year</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">Planning Year</p>
           </div>
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">~20K</p>
-            <p className="font-sans text-xs text-forest/50 tracking-wide uppercase mt-1">Residents</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">Residents</p>
           </div>
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">1 Parish</p>
-            <p className="font-sans text-xs text-forest/50 tracking-wide uppercase mt-1">One Vision</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">One Vision</p>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-forest/30 z-10">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-forest/85 z-10">
         <span className="font-sans text-xs tracking-widest uppercase">Scroll</span>
         <div className="w-px h-10 bg-gradient-to-b from-forest/30 to-transparent animate-pulse" />
       </div>

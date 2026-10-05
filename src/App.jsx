@@ -14,40 +14,9 @@ import LiveResponsesSection from "./components/LiveResponsesSection.jsx"
 import Footer from "./components/Footer.jsx"
 import BottomBar from "./components/BottomBar.jsx"
 
-// ============================================================
-// TEMPORARY RICHLAND HOLD - ATTORNEY REVIEW - SEPTEMBER 2026
-// Normal website is preserved below in comments.
-// DO NOT confuse this with sections intentionally hidden.
-// ============================================================
+
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-ivory flex items-center justify-center px-6">
-      <div className="text-center">
-        <img
-          src={`${import.meta.env.BASE_URL}images/logos/master-plan.png`}
-          alt="Rooted in Richland"
-          className="w-full max-w-md mx-auto mb-8"
-        />
-
-        <h1 className="font-serif text-forest text-4xl md:text-5xl mb-4">
-          Rooted in Richland
-        </h1>
-
-        <p className="font-serif italic text-sage text-2xl md:text-3xl">
-          Website Coming Soon!
-        </p>
-      </div>
-    </div>
-  )
-}
-
-/*
-============================================================
-NORMAL WEBSITE - TEMPORARILY DISABLED FOR ATTORNEY REVIEW
-============================================================
-
-export function NormalWebsite() {
   return (
     <div className="min-h-screen pb-14">
       <Header />
@@ -59,14 +28,14 @@ export function NormalWebsite() {
         <LearnSection />
         <ExistingConditionsSection />
 
-        LandUseSection intentionally hidden
-        DocumentsSection intentionally hidden
+        {/* LandUseSection intentionally hidden */}
+        {/* DocumentsSection intentionally hidden */}
 
         <StayEngagedSection />
         <EventsSection />
 
-        InteractiveMapSection intentionally hidden
-        LiveResponsesSection intentionally hidden
+        {/* InteractiveMapSection intentionally hidden */}
+        {/* LiveResponsesSection intentionally hidden */}
 
       </main>
       <Footer />
@@ -74,4 +43,3 @@ export function NormalWebsite() {
     </div>
   )
 }
-*/

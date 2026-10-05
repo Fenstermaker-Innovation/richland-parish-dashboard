@@ -246,7 +246,7 @@ export default function EventsSection() {
           <h2 className="font-serif text-ivory text-4xl lg:text-5xl font-semibold mb-4">
             Upcoming Events
           </h2>
-          <p className="font-sans text-ivory/60 text-base max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans text-ivory text-base max-w-xl mx-auto leading-relaxed">
             Join us in person to learn about the plan, share your ideas, and connect
             with your neighbors. All meetings are open to the public.
           </p>
@@ -254,14 +254,14 @@ export default function EventsSection() {
 
         {loading && (
           <div className="text-center py-20">
-            <p className="font-sans text-ivory/30 text-sm">Loading events…</p>
+            <p className="font-sans text-ivory text-sm">Loading events…</p>
           </div>
         )}
 
         {!loading && events.length === 0 && (
-          <div className="text-center py-20 border border-dashed border-eucalyptus/30">
-            <p className="font-serif text-ivory/30 text-xl mb-2">No upcoming events</p>
-            <p className="font-sans text-ivory/20 text-sm">Check back soon.</p>
+          <div className="text-center py-20 border border-dashed border-eucalyptus">
+            <p className="font-serif text-ivory text-xl mb-2">No upcoming events</p>
+            <p className="font-sans text-ivory/95 text-sm">Check back soon.</p>
           </div>
         )}
 
