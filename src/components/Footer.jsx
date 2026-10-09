@@ -40,7 +40,21 @@ export default function Footer() {
 
         {/* Contact */}
         <div className="flex flex-col items-center md:items-start">
-          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/95 mb-3">Contact</p>
+          <p className="font-sans text-[10px] tracking-widest uppercase text-ivory/95 mb-3">
+            Contact
+          </p>
+          <p className="font-sans text-xs text-ivory/95 mb-3 leading-relaxed">
+            Have questions or comments about the Richland Parish Master Plan?
+            Please use the contact form in the Stay Engaged section to get in touch.
+          </p>
+          <a
+            href="#stay-engaged"
+            className="font-sans text-xs text-sage underline hover:text-ivory transition-colors"
+          >
+            Go to Contact Form
+          </a>
+
+          {/*
           <p className="font-sans text-xs text-ivory/95 mb-3 leading-relaxed">
             For all your contact needs please contact:
           </p>
@@ -60,8 +74,9 @@ export default function Footer() {
             <span className="text-ivory/95">·</span>
             <span>x1527</span>
           </div>
+          */}
         </div>
-
+        
       </div>
     </footer>
   )
