@@ -44,7 +44,7 @@ export default function HeroSection() {
  {/* Public Meeting #1 recap preview */}
         <a
           href="#past-events"
-          className="group mt-8 flex items-center gap-4 max-w-md border border-forest/30 bg-sand/40 p-3 hover:bg-sand/70 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+          className="group mt-8 flex items-center gap-4 max-w-md border border-forest/30 bg-ivory p-3 hover:bg-sand/40 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
           aria-label="View recap of Public Meeting #1 – Visioning Workshop"
         >
           <div className="flex-1 min-w-0">
