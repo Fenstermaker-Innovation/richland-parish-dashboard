@@ -79,13 +79,13 @@ function MiniCalendar({ year, month, eventDays, onDayClick }) {
   ]
 
   return (
-    <div className="border border-eucalyptus/20 p-6 lg:p-8">
-      <p className="font-sans text-sm font-semibold text-ivory/70 tracking-widest uppercase text-center mb-5">
+    <div className="border border-eucalyptus/60 p-6 lg:p-8">
+      <p className="font-sans text-sm font-semibold text-ivory/95 tracking-widest uppercase text-center mb-5">
         {label}
       </p>
       <div className="grid grid-cols-7 gap-y-1.5 text-center">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map(d => (
-          <span key={d} className="font-sans text-xs text-eucalyptus/60 pb-2">{d}</span>
+          <span key={d} className="font-sans text-xs text-eucalyptus pb-2">{d}</span>
         ))}
         {cells.map((day, i) => {
           const hasEvent = day && eventDays.includes(day)
@@ -98,12 +98,12 @@ function MiniCalendar({ year, month, eventDays, onDayClick }) {
                   <button
                     onClick={() => onDayClick(year, month, day)}
                     aria-label={`View event on ${label} ${day}`}
-                    className={`${baseClass} bg-sage text-forest font-semibold hover:bg-eucalyptus hover:text-ivory cursor-pointer`}
+                    className={`${baseClass} bg-sage text-forest font-semibold hover:bg-eucalyptus hover:text-forest cursor-pointer`}
                   >
                     {day}
                   </button>
                 ) : (
-                  <span className={`${baseClass} ${isToday ? "border border-eucalyptus/50 text-ivory" : "text-ivory/35"}`}>
+                  <span className={`${baseClass} ${isToday ? "border border-eucalyptus/50 text-ivory" : "text-ivory/80"}`}>
                     {day}
                   </span>
                 )
@@ -122,8 +122,8 @@ function ArrowButton({ direction, onClick, disabled }) {
       onClick={onClick}
       disabled={disabled}
       aria-label={direction === "prev" ? "Previous event" : "Next event"}
-      className={`w-11 h-11 flex items-center justify-center border border-eucalyptus/40 backdrop-blur-sm transition-colors duration-150 flex-shrink-0 ${
-        disabled ? "bg-ivory/5 text-ivory/20 cursor-not-allowed" : "bg-ivory/10 hover:bg-ivory/20 text-ivory"
+      className={`w-11 h-11 flex items-center justify-center border border-eucalyptus/70 backdrop-blur-sm transition-colors duration-150 flex-shrink-0 ${
+        disabled ? "bg-ivory/5 text-ivory/60 cursor-not-allowed" : "bg-ivory/10 hover:bg-ivory/20 text-ivory"
       }`}
     >
       {direction === "prev" ? (
@@ -163,17 +163,17 @@ function EventCard({ event }) {
         <h3 className="font-serif text-forest text-xl font-semibold mb-2 leading-snug line-clamp-1">
           {event.title}
         </h3>
-        <p className="font-sans text-forest/55 text-xs leading-relaxed mb-5 line-clamp-4 flex-1">
+        <p className="font-sans text-forest text-xs leading-relaxed mb-5 line-clamp-4 flex-1">
           {event.description}
         </p>
         <div className="flex flex-col gap-1.5 pt-3 border-t border-sand/60">
-          <span className="font-sans text-xs text-forest/50 flex items-center gap-1.5">
+          <span className="font-sans text-xs text-forest flex items-center gap-1.5">
             <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
             </svg>
             {full} · {event.time}
           </span>
-          <span className="font-sans text-xs text-forest/50 flex items-center gap-1.5">
+          <span className="font-sans text-xs text-forest flex items-center gap-1.5">
             <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -186,12 +186,28 @@ function EventCard({ event }) {
   )
 }
 
+// Public Meeting #1 assets live in public/events/public-meeting-01/.
+// Keep the first four photographs in the requested display order.
+const MEETING_01_PATH = `${BASE}events/public-meeting-01/`
+const MEETING_01_PHOTOS = [
+  "Image - 2026-10-07T131825.428.jpg",
+  "Image - 2026-10-07T133153.357.jpg",
+  "Image - 2026-10-07T133200.772.jpg",
+  "Image - 2026-10-07T133158.103.jpg",
+  "Image - 2026-10-07T133204.117.jpg",
+  "Image - 2026-10-07T133202.188.jpg",
+  "Image - 2026-10-07T133154.714.jpg",
+  "Image - 2026-10-07T131830.570.jpg",
+]
+
 const VISIBLE = 3
 
 export default function EventsSection() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [startIdx, setStartIdx] = useState(0)
+  const [meetingExpanded, setMeetingExpanded] = useState(false)
+  const [showAllPhotos, setShowAllPhotos] = useState(false)
 
   useEffect(() => {
     const url = EVENTS_CSV_URL || "./events.csv"
@@ -269,7 +285,7 @@ export default function EventsSection() {
           <>
             {/* Calendars — above the carousel */}
             <div className="mb-14">
-              <p className="font-sans text-xs text-ivory/30 tracking-widest uppercase text-center mb-6">
+              <p className="font-sans text-xs text-ivory/95 tracking-widest uppercase text-center mb-6">
                 At a Glance
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -309,23 +325,106 @@ export default function EventsSection() {
                       onClick={() => setStartIdx(i)}
                       aria-label={`Go to position ${i + 1}`}
                       className={`transition-all duration-300 rounded-full ${
-                        i === startIdx ? "w-4 h-1.5 bg-sage" : "w-1.5 h-1.5 bg-eucalyptus/30 hover:bg-eucalyptus/60"
+                        i === startIdx ? "w-4 h-1.5 bg-sage" : "w-1.5 h-1.5 bg-eucalyptus/70 hover:bg-eucalyptus"
                       }`}
                     />
                   ))}
                 </div>
 
-                <span className="font-sans text-xs text-ivory/30 tracking-widest">
+                <span className="font-sans text-xs text-ivory/95 tracking-widest">
                   {String(startIdx + 1).padStart(2, "0")} / {String(maxIdx + 1).padStart(2, "0")}
                 </span>
               </div>
             )}
 
-            <p className="font-sans text-ivory/25 text-xs text-center mt-10">
+            <p className="font-sans text-ivory/95 text-xs text-center mt-10">
               Sign up above to receive event reminders directly in your inbox.
             </p>
           </>
         )}
+
+        {/* Completed meetings are independent of the upcoming-events CSV filter. */}
+        <div className="mt-20 border-t border-eucalyptus/60 pt-14" id="past-events">
+          <p className="section-label text-eucalyptus text-center">Meeting Recaps</p>
+          <h2 className="font-serif text-ivory text-3xl lg:text-4xl font-semibold text-center mt-2 mb-8">
+            Past Events &amp; Meeting Materials
+          </h2>
+
+          <article className="bg-ivory text-forest overflow-hidden">
+            <div className="p-6 sm:p-8">
+              <p className="font-sans text-sm font-semibold text-forest mb-2">October 6, 2026</p>
+              <h3 className="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+                Public Meeting #1 – Visioning Workshop
+              </h3>
+              <p className="font-sans text-sm sm:text-base mt-3 leading-relaxed">
+                View photographs and materials from the first public visioning workshop
+                for the Richland Parish Master Plan.
+              </p>
+              <button
+                type="button"
+                aria-expanded={meetingExpanded}
+                aria-controls="meeting-01-materials"
+                onClick={() => setMeetingExpanded(value => !value)}
+                className="mt-6 inline-flex items-center justify-center bg-forest text-ivory font-sans text-sm font-semibold px-5 py-3 hover:bg-bark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+              >
+                {meetingExpanded ? "Hide Meeting Materials" : "View Meeting Materials"}
+              </button>
+            </div>
+
+            {meetingExpanded && (
+              <div id="meeting-01-materials" className="px-6 pb-8 sm:px-8 border-t border-sand">
+                <h4 className="font-serif text-forest text-xl font-semibold mt-7 mb-4">Workshop Photos</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {MEETING_01_PHOTOS.slice(0, showAllPhotos ? 8 : 4).map((filename, index) => (
+                    <a
+                      key={filename}
+                      href={`${MEETING_01_PATH}${encodeURIComponent(filename)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                      aria-label={`Open workshop photograph ${index + 1} in a new tab`}
+                    >
+                      <img
+                        src={`${MEETING_01_PATH}${encodeURIComponent(filename)}`}
+                        alt={`Photograph ${index + 1} from Public Meeting #1 – Visioning Workshop`}
+                        loading="lazy"
+                        className="w-full h-56 sm:h-64 object-cover"
+                      />
+                    </a>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowAllPhotos(value => !value)}
+                  aria-expanded={showAllPhotos}
+                  className="mt-4 border border-forest text-forest font-sans text-sm font-semibold px-5 py-3 hover:bg-forest hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                >
+                  {showAllPhotos ? "Show Fewer Photos" : "View All 8 Photos"}
+                </button>
+
+                <h4 className="font-serif text-forest text-xl font-semibold mt-10 mb-4">Meeting Documents</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <a
+                    href={`${MEETING_01_PATH}${encodeURIComponent("PublicMeeting_Presentation1_102026.pdf")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-forest p-5 font-sans text-sm font-semibold text-forest hover:bg-forest hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                  >
+                    View Meeting Presentation (PDF, opens in new tab) ↗
+                  </a>
+                  <a
+                    href={`${MEETING_01_PATH}${encodeURIComponent("Richland Parish Visioning Workshop Boards_Final.pdf")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-forest p-5 font-sans text-sm font-semibold text-forest hover:bg-forest hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                  >
+                    View Visioning Workshop Boards (PDF, opens in new tab) ↗
+                  </a>
+                </div>
+              </div>
+            )}
+          </article>
+        </div>
       </div>
     </section>
   )
