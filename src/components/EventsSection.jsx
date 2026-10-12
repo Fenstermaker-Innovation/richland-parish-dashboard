@@ -206,7 +206,7 @@ export default function EventsSection() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [startIdx, setStartIdx] = useState(0)
-  const [meetingExpanded, setMeetingExpanded] = useState(false)
+  const [meetingExpanded, setMeetingExpanded] = useState(true)
   const [showAllPhotos, setShowAllPhotos] = useState(false)
 
   useEffect(() => {
