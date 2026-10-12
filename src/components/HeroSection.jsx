@@ -41,6 +41,31 @@ export default function HeroSection() {
           </a>
         </div>
 
+ {/* Public Meeting #1 recap preview */}
+        <a
+          href="#past-events"
+          className="group mt-8 flex items-center gap-4 max-w-md border border-forest/30 bg-sand/40 p-3 hover:bg-sand/70 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+          aria-label="View recap of Public Meeting #1 – Visioning Workshop"
+        >
+          <div className="flex-1 min-w-0">
+            <p className="font-sans text-xs font-semibold text-forest uppercase tracking-wide mb-2">
+              October 6, 2026
+            </p>
+            <p className="font-serif text-base font-semibold text-forest leading-snug group-hover:underline">
+              View Recap of PUBLIC MEETING #1 – VISIONING WORKSHOP
+              <span aria-hidden="true"> ↗</span>
+            </p>
+          </div>
+
+          <img
+            src={`${import.meta.env.BASE_URL}events/public-meeting-01/${encodeURIComponent("Image - 2026-10-07T133200.772.jpg")}`}
+            alt=""
+            loading="lazy"
+            className="w-28 h-24 object-cover flex-shrink-0"
+          />
+        </a>
+
+        
         {/* Divider line */}
         <div className="mt-16 pt-8 border-t border-sand flex gap-10">
           <div>
