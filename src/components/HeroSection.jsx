@@ -1,3 +1,4 @@
+
 import ParishMap from "./ParishMap.jsx"
 
 export default function HeroSection() {
@@ -5,9 +6,9 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex flex-col lg:flex-row pt-[76px]">
       {/* Left panel — text */}
       <div className="relative z-10 flex flex-col justify-center px-10 py-32 lg:py-0 lg:w-5/12 lg:px-16 xl:px-24 bg-ivory">
-       {/* <p className="section-label mb-6">Rooted in Richland</p> */}
-      {/* Rooted in Richland label hidden; spacer preserves logo position */}
-      <div className="h-5 mb-6" aria-hidden="true" />
+        {/* <p className="section-label mb-6">Rooted in Richland</p> */}
+        {/* Rooted in Richland label hidden; spacer preserves logo position */}
+        <div className="h-5 mb-6" aria-hidden="true" />
 
         <div className="flex justify-start mb-8">
           <img
@@ -17,7 +18,10 @@ export default function HeroSection() {
           />
         </div>
 
-        <h1 className="font-serif text-forest leading-tight mb-3" style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}>
+        <h1
+          className="font-serif text-forest leading-tight mb-3"
+          style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}
+        >
           Strong Roots,
           <span className="block text-brown">Smart Growth.</span>
         </h1>
@@ -41,19 +45,49 @@ export default function HeroSection() {
           </a>
         </div>
 
+        {/* Public Meeting #1 recap preview */}
+        <a
+          href="#past-events"
+          aria-label="View recap of Public Meeting #1 – Visioning Workshop"
+          className="group mt-8 flex items-center gap-4 max-w-md border border-forest rounded-lg bg-ivory p-3 hover:bg-forest transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+        >
+          <div className="flex-1 min-w-0">
+            <p className="font-sans text-xs font-semibold text-forest group-hover:text-ivory uppercase tracking-wide mb-2 transition-colors duration-200">
+              October 6, 2026
+            </p>
+            <p className="font-serif text-base font-semibold text-forest group-hover:text-ivory leading-snug group-hover:underline transition-colors duration-200">
+              View Recap of PUBLIC MEETING #1 – VISIONING WORKSHOP
+              <span aria-hidden="true"> ↗</span>
+            </p>
+          </div>
+
+          <img
+            src={`${import.meta.env.BASE_URL}events/public-meeting-01/${encodeURIComponent("Image - 2026-10-07T133200.772.jpg")}`}
+            alt=""
+            loading="lazy"
+            className="w-28 h-24 object-cover rounded-md flex-shrink-0"
+          />
+        </a>
+
         {/* Divider line */}
         <div className="mt-16 pt-8 border-t border-sand flex gap-10">
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">2026</p>
-            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">Planning Year</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">
+              Planning Year
+            </p>
           </div>
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">~20K</p>
-            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">Residents</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">
+              Residents
+            </p>
           </div>
           <div>
             <p className="font-serif text-2xl text-forest font-semibold">1 Parish</p>
-            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">One Vision</p>
+            <p className="font-sans text-xs text-forest tracking-wide uppercase mt-1">
+              One Vision
+            </p>
           </div>
         </div>
       </div>
